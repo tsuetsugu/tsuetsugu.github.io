@@ -1,0 +1,18 @@
+---
+layout: post
+title: "OctpressでBlogを始めてみた"
+date: 2014-12-25 22:53:06 +0900
+comments: true
+categories: ['@tsuetsugu', 'octpress']
+---
+
+なんもしないと勉強にならないということで
+
+アウトプットも兼ねてBlogを開始。
+
+テーマとかもいじりたいが、
+そもそもMarkdownの記述もわからないとか
+ホント微妙なエンジニアだなと思いながら、
+「脱ポンコツ」を目指してがんばろう。。。
+
+
