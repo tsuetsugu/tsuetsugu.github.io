@@ -4,7 +4,7 @@
   <title><![CDATA[ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2014-12-25T23:22:22+09:00</updated>
+  <updated>2015-01-11T00:22:07+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA['勉強がてら仮想環境をちゃんと作ってみる']]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/01/11/title/"/>
+    <updated>2015-01-11T00:12:05+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/01/11/title</id>
+    <content type="html"><![CDATA[<p>知らないこともたくさんありすぎて何から手を付けるべきかと悩むが
+一先ずChef勉強ついでにPHPの開発環境も作成しようかと・・・。</p>
+
+<p>・仮想環境での環境構築勉強　VirtualBoxで作成<br/>
+・Chefもついでに勉強<br/>
+・PHPもついでに勉強</p>
+
+<p>VirtualBox、Vagrantは前にインストールしてるので、
+仮想環境作成から。</p>
+
+<h1>Vagrantの設定</h1>
+
+<p>vagrant init phpms <a href="https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box">https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box</a></p>
+
+<p>OS何がいいかわかんないからCentOS6.5で・・・。</p>
+
+<p>vagrant initではVagrantfileが作成される。</p>
+
+<h1>Boxの作成</h1>
+
+<p>　vagrant up</p>
+
+<p>　OSダウンロード</p>
+
+<h1>SSH接続</h1>
+
+<p> vagrant ssh</p>
+
+<p>[vagrant@vagrant-centos65 ~]$</p>
+
+<p>一先ず立ち上がったので、 SSH抜けて一旦停止</p>
+
+<p>[vagrant@vagrant-centos65 ~]$ exit<br/>
+ vagrant halt</p>
+
+<p>眠いので明日以降に続きを・・・。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[OctpressでBlogを始めてみた]]></title>
