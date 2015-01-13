@@ -116,12 +116,256 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-13T23:49:25+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015/01/13/title/" itemprop="url">環境構築Ansibleでやってみた</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Chefは挫折してしまったので、Ansibleで再度環境構築を・・・。</p>
+
+<h1>Vagrantを使ってサーバー準備</h1>
+
+<h2>Vagrantfileを作成</h2>
+
+<p>$ vagrant init chef/centos-6.5</p>
+
+<h2>Vagrantfile編集</h2>
+
+<p> # config.vm.box = &ldquo;chef/centos-6.5&rdquo; #コメントアウト</p>
+
+<p>  config.vm.define &ldquo;web&rdquo; do |node|
+    node.vm.box = &ldquo;chef/centos-6.5&rdquo;
+    node.vm.hostname = &ldquo;web&rdquo;
+    node.vm.network :private_network, ip: &ldquo;192.168.59.34&rdquo;
+  end</p>
+
+<h2>仮想環境立ち上げ</h2>
+
+<p>Vagrant up</p>
+
+<p>回線が微妙なので長い・・・。</p>
+
+<h2>鍵の作成</h2>
+
+<p>すでにあるんで、これでOK？</p>
+
+<p>cat .ssh/id_rsa.pub | ssh <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x76;&#97;&#103;&#x72;&#x61;&#x6e;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#x38;&#46;&#53;&#x39;&#46;&#x33;&#52;">&#118;&#97;&#x67;&#114;&#97;&#x6e;&#116;&#64;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#x38;&#x2e;&#53;&#57;&#x2e;&#x33;&#x34;</a> &ldquo;cat >> .ssh/authorized_keys”</p>
+
+<p>echo &ldquo;[web]&rdquo; > hosts</p>
+
+<p>echo &ldquo;192.168.59.34&rdquo; > hosts</p>
+
+<p>ssh <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x76;&#97;&#103;&#x72;&#97;&#110;&#116;&#64;&#x31;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#53;&#57;&#46;&#51;&#x34;">&#x76;&#97;&#103;&#x72;&#x61;&#110;&#x74;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#x35;&#57;&#x2e;&#x33;&#x34;</a> ※パスワードはvagrant</p>
+
+<p>一先ず繋がればOK・・・。</p>
+
+<p>[vagrant@web ~]$</p>
+
+<h1>Ansibleの設定</h1>
+
+<h2>Ansibleを管理側にインストール</h2>
+
+<p>brew install unusable</p>
+
+<h2>Ansible疎通確認</h2>
+
+<p>ansible -i hosts all -m ping</p>
+
+<p>ERROR: Unable to find an inventory file, specify one with -i ?</p>
+
+<p>inventory fileを指定しろというエラー・・・。</p>
+
+<p>Ansibleはインベントリファイルに記載されたホストにしかアクセスしないので、
+インベントリファイルを編集しないといけないがそもそもどこに格納されてるんだろと思ったが
+さっき作ったhostsか？</p>
+
+<p>ということで、ホームディレクトリに移動して再度
+ansible -i hosts all -m ping</p>
+
+<p>192.168.59.34 | FAILED => SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue</p>
+
+<p>実行できたが違うエラー・・・。何だろと検索してるとSSHのコンフィグあたりが怪しいということで</p>
+
+<p>vim ~/.ssh/config</p>
+
+<h2>記述追加</h2>
+
+<p>Host 192.168.59.34
+  HostName 192.168.59.34
+  IdentityFile ~/.ssh/id_rsa
+  User vagrant</p>
+
+<p>設定後再実行すると・・・
+192.168.59.34 | success >> {
+    &ldquo;changed&rdquo;: false,
+    &ldquo;ping&rdquo;: &ldquo;pong&rdquo;
+}</p>
+
+<p>成功したようだけど、この辺全然わからない・・・。
+一先ず先に進む・・・。</p>
+
+<h2>仮想環境側のPythonインストール確認</h2>
+
+<p>管理ホストは2.6が必要で、対象ホストは2.4でいいらしい。
+※但し、2.4の場合は依存ライブラリーが必要</p>
+
+<p>バージョン確認
+[vagrant@web ~]$ python -V
+Python 2.6.6</p>
+
+<p>入ってるのでOK</p>
+
+<h2>Playbookの作成</h2>
+
+<p>$ vim playbook.yml</p>
+
+<p>内容はこのサイトから<a href="http://liginc.co.jp/web/programming/server/129004">http://liginc.co.jp/web/programming/server/129004</a></p>
+
+<h2>playbook実行</h2>
+
+<p>suetsugutoshiyuki-no-MacBook-Pro:~ toshi$ ansible-playbook -i hosts playbook.yml</p>
+
+<p>PLAY [192.168.59.34] **********************************************************</p>
+
+<p>GATHERING FACTS ***************************************************************
+ok: [192.168.59.34]</p>
+
+<p>TASK: [Install basepackage] ***************************************************
+changed: [192.168.59.34] => (item=wget,ntp,vim)</p>
+
+<p>TASK: [SELinux Disable] *******************************************************
+changed: [192.168.59.34]</p>
+
+<p>TASK: [Edit selinux config] ***************************************************
+changed: [192.168.59.34]</p>
+
+<p>TASK: [stop iptabes] **********************************************************
+ok: [192.168.59.34]</p>
+
+<p>TASK: [Install apache] ********************************************************
+changed: [192.168.59.34]</p>
+
+<p>TASK: [Install php] ***********************************************************
+changed: [192.168.59.34] => (item=php,php-devel,php-mbstring,php-mysql,php-gd)</p>
+
+<p>TASK: [Install mysql] *********************************************************
+changed: [192.168.59.34]</p>
+
+<p>NOTIFIED: [restart apache] ****************************************************
+changed: [192.168.59.34]</p>
+
+<p>NOTIFIED: [mysql setup] *******************************************************
+changed: [192.168.59.34]</p>
+
+<p>NOTIFIED: [mysql set password] ************************************************
+changed: [192.168.59.34]</p>
+
+<p>PLAY RECAP ********************************************************************
+192.168.59.34              : ok=11   changed=9    unreachable=0    failed=0</p>
+
+<p>うまくいってるぽいので、確認のため再実行</p>
+
+<p>※hostsは修正</p>
+
+<p>PLAY [web] ********************************************************************</p>
+
+<p>GATHERING FACTS ***************************************************************
+ok: [192.168.59.34]</p>
+
+<p>TASK: [Install basepackage] ***************************************************
+ok: [192.168.59.34] => (item=wget,ntp,vim)</p>
+
+<p>TASK: [SELinux Disable] *******************************************************
+changed: [192.168.59.34]</p>
+
+<p>TASK: [Edit selinux config] ***************************************************
+changed: [192.168.59.34]</p>
+
+<p>TASK: [stop iptabes] **********************************************************
+ok: [192.168.59.34]</p>
+
+<p>TASK: [Install apache] ********************************************************
+ok: [192.168.59.34]</p>
+
+<p>TASK: [Install php] ***********************************************************
+ok: [192.168.59.34] => (item=php,php-devel,php-mbstring,php-mysql,php-gd)</p>
+
+<p>TASK: [Install mysql] *********************************************************
+ok: [192.168.59.34]</p>
+
+<p>PLAY RECAP ********************************************************************
+192.168.59.34              : ok=8    changed=2    unreachable=0    failed=0</p>
+
+<p>２回目は再度インストールはしないので早い。</p>
+
+<h2>Apacheの起動確認</h2>
+
+<p><a href="http://192.168.59.34/">http://192.168.59.34/</a></p>
+
+<p>Apacheの画面が出ればOK!</p>
+
+<h2>mysqlも確認</h2>
+
+<p>ssh <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#118;&#x61;&#x67;&#114;&#x61;&#x6e;&#x74;&#64;&#x31;&#57;&#50;&#x2e;&#49;&#54;&#56;&#46;&#x35;&#57;&#46;&#51;&#x34;">&#x76;&#x61;&#103;&#114;&#x61;&#x6e;&#x74;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#x35;&#x39;&#x2e;&#51;&#52;</a></p>
+
+<p>[vagrant@web ~]$ mysql -u root -p</p>
+
+<p>Enter password:
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 3
+Server version: 5.1.73 Source distribution</p>
+
+<p>Copyright &copy; 2000, 2013, Oracle and/or its affiliates. All rights reserved.</p>
+
+<p>Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.</p>
+
+<p>Type &lsquo;help;&rsquo; or &lsquo;\h&rsquo; for help. Type &lsquo;\c&rsquo; to clear the current input statement.</p>
+
+<p>mysql></p>
+
+<p>出来た！！長かった・・・。</p>
+
+<p>Ansibleで環境構築は一先ず出来たぽいので、本格的な勉強をようやく始められます・・・。
+Ansibleもどう動いているかちゃんと理解したいので、ちょくちょく勉強はしていきます・・・。</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-11T00:12:05+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015/01/11/title/" itemprop="url">&#8216;勉強がてら仮想環境をちゃんと作ってみる&#8217;</a></h2>
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015/01/11/title/" itemprop="url">勉強がてら仮想環境をちゃんと作ってみる</a></h2>
     
   </header>
 
@@ -138,6 +382,8 @@
 
 <h1>Vagrantの設定</h1>
 
+<p>コマンドは下記</p>
+
 <p>vagrant init phpms <a href="https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box">https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box</a></p>
 
 <p>OS何がいいかわかんないからCentOS6.5で・・・。</p>
@@ -146,22 +392,49 @@
 
 <h1>Boxの作成</h1>
 
-<p>　vagrant up</p>
+<p>　vagrant up で立ち上げ</p>
 
-<p>　OSダウンロード</p>
+<p>  初回はOSダウンロードからなので、ちょっと待つ。</p>
 
 <h1>SSH接続</h1>
+
+<p> ダウンロード出来たら、SSHで接続</p>
 
 <p> vagrant ssh</p>
 
 <p>[vagrant@vagrant-centos65 ~]$</p>
 
-<p>一先ず立ち上がったので、 SSH抜けて一旦停止</p>
+<p>上記一先ず立ち上がったので、 SSH抜けて一旦停止</p>
 
 <p>[vagrant@vagrant-centos65 ~]$ exit<br/>
  vagrant halt</p>
 
 <p>眠いので明日以降に続きを・・・。</p>
+
+<p> 昨日の続き・・・</p>
+
+<h1>Chef Soloのインストール</h1>
+
+<p>curl -L <a href="https://www.opscode.com/chef/install.sh">https://www.opscode.com/chef/install.sh</a> | sudo bash</p>
+
+<p>結構時間かかる・・・。
+[vagrant@vagrant-centos65 ~]$ curl -L <a href="https://www.opscode.com/chef/install.sh">https://www.opscode.com/chef/install.sh</a> | sudo bash</p>
+
+<p>・・・</p>
+
+<p>Thank you for installing Chef!</p>
+
+<p>こうなればOKだが、ネットサーフィンしてたらChef-soloは時代遅れとここで気づく・・・。</p>
+
+<p>今主流はChef Client だそうで、本はChef-soloだったので、こりゃだめだということでAnsibleに乗り換え・・・。</p>
+
+<p>はぁ、情報弱者すぎるポンコツ・・・。</p>
+
+<p>ついでだから仮想環境捨てる練習で・・・・</p>
+
+<p>vagrant destroy</p>
+
+<p>ということで最初からやり直し・・・続きはまた今度</p>
 </div>
   
   
@@ -236,7 +509,9 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2015/01/11/title/">&#8216;勉強がてら仮想環境をちゃんと作ってみる&#8217;</a>
+    <a class="list-group-item " href="/blog/2015/01/13/title/">環境構築Ansibleでやってみた</a>
+    
+    <a class="list-group-item " href="/blog/2015/01/11/title/">勉強がてら仮想環境をちゃんと作ってみる</a>
     
     <a class="list-group-item " href="/blog/2014/12/25/title/">OctpressでBlogを始めてみた</a>
     

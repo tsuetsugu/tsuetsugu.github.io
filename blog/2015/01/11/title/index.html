@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>&#8216;勉強がてら仮想環境をちゃんと作ってみる&#8217; - ポンコツエンジニアの徒然Blog</title>
+  <title>勉強がてら仮想環境をちゃんと作ってみる - ポンコツエンジニアの徒然Blog</title>
   <meta name="author" content="Toshi">
 
   
@@ -22,7 +22,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
   <meta property="og:url" content="http://tsuetsugu.github.io/blog/2015/01/11/title">
-  <meta property="og:title" content="'勉強がてら仮想環境をちゃんと作ってみる' - ポンコツエンジニアの徒然Blog">
+  <meta property="og:title" content="勉強がてら仮想環境をちゃんと作ってみる - ポンコツエンジニアの徒然Blog">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -118,7 +118,7 @@
     
     
     <h1 class="entry-title" itemprop="name headline">
-        &#8216;勉強がてら仮想環境をちゃんと作ってみる&#8217;
+        勉強がてら仮想環境をちゃんと作ってみる
         
     </h1>
     
@@ -137,6 +137,8 @@
 
 <h1>Vagrantの設定</h1>
 
+<p>コマンドは下記</p>
+
 <p>vagrant init phpms <a href="https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box">https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box</a></p>
 
 <p>OS何がいいかわかんないからCentOS6.5で・・・。</p>
@@ -145,22 +147,49 @@
 
 <h1>Boxの作成</h1>
 
-<p>　vagrant up</p>
+<p>　vagrant up で立ち上げ</p>
 
-<p>　OSダウンロード</p>
+<p>  初回はOSダウンロードからなので、ちょっと待つ。</p>
 
 <h1>SSH接続</h1>
+
+<p> ダウンロード出来たら、SSHで接続</p>
 
 <p> vagrant ssh</p>
 
 <p>[vagrant@vagrant-centos65 ~]$</p>
 
-<p>一先ず立ち上がったので、 SSH抜けて一旦停止</p>
+<p>上記一先ず立ち上がったので、 SSH抜けて一旦停止</p>
 
 <p>[vagrant@vagrant-centos65 ~]$ exit<br/>
  vagrant halt</p>
 
 <p>眠いので明日以降に続きを・・・。</p>
+
+<p> 昨日の続き・・・</p>
+
+<h1>Chef Soloのインストール</h1>
+
+<p>curl -L <a href="https://www.opscode.com/chef/install.sh">https://www.opscode.com/chef/install.sh</a> | sudo bash</p>
+
+<p>結構時間かかる・・・。
+[vagrant@vagrant-centos65 ~]$ curl -L <a href="https://www.opscode.com/chef/install.sh">https://www.opscode.com/chef/install.sh</a> | sudo bash</p>
+
+<p>・・・</p>
+
+<p>Thank you for installing Chef!</p>
+
+<p>こうなればOKだが、ネットサーフィンしてたらChef-soloは時代遅れとここで気づく・・・。</p>
+
+<p>今主流はChef Client だそうで、本はChef-soloだったので、こりゃだめだということでAnsibleに乗り換え・・・。</p>
+
+<p>はぁ、情報弱者すぎるポンコツ・・・。</p>
+
+<p>ついでだから仮想環境捨てる練習で・・・・</p>
+
+<p>vagrant destroy</p>
+
+<p>ということで最初からやり直し・・・続きはまた今度</p>
 </div>
 
 
@@ -205,6 +234,8 @@
             <li class="previous"><a href="/blog/2014/12/25/title/" title="Previous Post: OctpressでBlogを始めてみた">&laquo; OctpressでBlogを始めてみた</a></li>
             
             
+            <li class="next"><a href="/blog/2015/01/13/title/" title="Next Post: 環境構築Ansibleでやってみた">環境構築Ansibleでやってみた &raquo;</a></li>
+            
           </ul>
         
       </footer>
@@ -222,7 +253,9 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item active" href="/blog/2015/01/11/title/">&#8216;勉強がてら仮想環境をちゃんと作ってみる&#8217;</a>
+    <a class="list-group-item " href="/blog/2015/01/13/title/">環境構築Ansibleでやってみた</a>
+    
+    <a class="list-group-item active" href="/blog/2015/01/11/title/">勉強がてら仮想環境をちゃんと作ってみる</a>
     
     <a class="list-group-item " href="/blog/2014/12/25/title/">OctpressでBlogを始めてみた</a>
     
