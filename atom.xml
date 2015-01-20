@@ -4,7 +4,7 @@
   <title><![CDATA[ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-01-13T23:53:35+09:00</updated>
+  <updated>2015-01-20T23:27:18+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,55 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[そもそも何を勉強しようか？]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/01/20/post-title/"/>
+    <updated>2015-01-20T23:11:26+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/01/20/post-title</id>
+    <content type="html"><![CDATA[<p>環境構築もやってみたので、今度は言語を何か学ぼうと思い
+本を使って学ぶか、適当にコーディングしていくかと悩みながら
+入りがないとなかなか手が付けられなかったので
+webサービスで何かないかなと探していたらこんなサイトがありました。</p>
+
+<p><strong>【無料で入門！】ゼロからプログラミングが学べるWEBサービス14選</strong></p>
+
+<p><a href="http://blog.codecamp.jp/learning_programming_for_free/">http://blog.codecamp.jp/learning_programming_for_free/</a></p>
+
+<p>ゼロじゃないけど、ほとんどゼロなんで、</p>
+
+<p>良さそうだなぁと思うのを選択</p>
+
+<p><strong>Progate</strong></p>
+
+<p><a href="http://prog-8.com">http://prog-8.com</a></p>
+
+<p>何と二人の東大生プログラマが作ったそうで、
+今学べるのは以下の３つです。</p>
+
+<p>・HTML/CSS</p>
+
+<p>・PHP</p>
+
+<p>・jQuery</p>
+
+<p>スライドで説明があり、その後演習問題として、画面でコーディング。
+その場でコーディングしながらプレビューもみれるので、
+どんな風になるかが一目でわかります。</p>
+
+<p>こりゃすごい。さくっと出来てしまうので、</p>
+
+<p>没頭できるのがいいですね。
+土曜日出勤でしたが暇だったので、ホントはいけないですがコソコソ６時間くらいやってました。
+初心者でもわかりやすい作りになっているのがホント素晴らしい・・・。</p>
+
+<p>HTML/CSS、PHPは初級は全部やって、jQueryは途中まででした。</p>
+
+<p>一つやったからといってスキルがあがる訳ではないですが
+色々使い倒していれば、ちょっとは理解が増えるはずなので、
+他のも試して理解が増えたら、PaizaとかCodeIQで実践したいと思います。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[環境構築Ansibleでやってみた]]></title>
@@ -30,10 +79,10 @@
 
 <p> # config.vm.box = &ldquo;chef/centos-6.5&rdquo; #コメントアウト</p>
 
-<p>  config.vm.define &ldquo;web&rdquo; do |node|
-    node.vm.box = &ldquo;chef/centos-6.5&rdquo;
-    node.vm.hostname = &ldquo;web&rdquo;
-    node.vm.network :private_network, ip: &ldquo;192.168.59.34&rdquo;
+<p>  config.vm.define &ldquo;web&rdquo; do |node|<br/>
+    node.vm.box = &ldquo;chef/centos-6.5&rdquo;<br/>
+    node.vm.hostname = &ldquo;web&rdquo;<br/>
+    node.vm.network :private_network, ip: &ldquo;192.168.59.34&rdquo;<br/>
   end</p>
 
 <h2>仮想環境立ち上げ</h2>
@@ -46,13 +95,13 @@
 
 <p>すでにあるんで、これでOK？</p>
 
-<p>cat .ssh/id_rsa.pub | ssh <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#x76;&#97;&#103;&#x72;&#x61;&#x6e;&#116;&#x40;&#49;&#x39;&#50;&#x2e;&#x31;&#x36;&#x38;&#46;&#53;&#x39;&#46;&#x33;&#52;">&#118;&#97;&#x67;&#114;&#97;&#x6e;&#116;&#64;&#x31;&#x39;&#50;&#46;&#49;&#x36;&#x38;&#x2e;&#53;&#57;&#x2e;&#x33;&#x34;</a> &ldquo;cat >> .ssh/authorized_keys”</p>
+<p>cat .ssh/id_rsa.pub | ssh <a href="&#109;&#x61;&#105;&#x6c;&#116;&#111;&#x3a;&#118;&#x61;&#103;&#114;&#x61;&#x6e;&#116;&#x40;&#49;&#57;&#x32;&#x2e;&#x31;&#x36;&#56;&#x2e;&#53;&#57;&#46;&#x33;&#52;">&#118;&#x61;&#103;&#114;&#x61;&#x6e;&#116;&#x40;&#x31;&#x39;&#x32;&#46;&#49;&#54;&#x38;&#x2e;&#53;&#57;&#46;&#x33;&#x34;</a> &ldquo;cat >> .ssh/authorized_keys”</p>
 
 <p>echo &ldquo;[web]&rdquo; > hosts</p>
 
 <p>echo &ldquo;192.168.59.34&rdquo; > hosts</p>
 
-<p>ssh <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#x6f;&#58;&#x76;&#97;&#103;&#x72;&#97;&#110;&#116;&#64;&#x31;&#57;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#53;&#57;&#46;&#51;&#x34;">&#x76;&#97;&#103;&#x72;&#x61;&#110;&#x74;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#x35;&#57;&#x2e;&#x33;&#x34;</a> ※パスワードはvagrant</p>
+<p>ssh <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#x3a;&#118;&#x61;&#x67;&#114;&#x61;&#110;&#x74;&#64;&#x31;&#x39;&#x32;&#46;&#49;&#54;&#56;&#46;&#53;&#x39;&#46;&#x33;&#x34;">&#118;&#97;&#x67;&#x72;&#97;&#x6e;&#x74;&#64;&#49;&#57;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#53;&#57;&#x2e;&#x33;&#x34;</a> ※パスワードはvagrant</p>
 
 <p>一先ず繋がればOK・・・。</p>
 
@@ -87,15 +136,15 @@ ansible -i hosts all -m ping</p>
 
 <h2>記述追加</h2>
 
-<p>Host 192.168.59.34
-  HostName 192.168.59.34
-  IdentityFile ~/.ssh/id_rsa
+<p>Host 192.168.59.34<br/>
+  HostName 192.168.59.34<br/>
+  IdentityFile ~/.ssh/id_rsa<br/>
   User vagrant</p>
 
 <p>設定後再実行すると・・・
-192.168.59.34 | success >> {
-    &ldquo;changed&rdquo;: false,
-    &ldquo;ping&rdquo;: &ldquo;pong&rdquo;
+192.168.59.34 | success >> {<br/>
+    &ldquo;changed&rdquo;: false, <br/>
+    &ldquo;ping&rdquo;: &ldquo;pong&rdquo;<br/>
 }</p>
 
 <p>成功したようだけど、この辺全然わからない・・・。
@@ -203,7 +252,7 @@ ok: [192.168.59.34]</p>
 
 <h2>mysqlも確認</h2>
 
-<p>ssh <a href="&#109;&#97;&#105;&#x6c;&#116;&#x6f;&#58;&#118;&#x61;&#x67;&#114;&#x61;&#x6e;&#x74;&#64;&#x31;&#57;&#50;&#x2e;&#49;&#54;&#56;&#46;&#x35;&#57;&#46;&#51;&#x34;">&#x76;&#x61;&#103;&#114;&#x61;&#x6e;&#x74;&#x40;&#49;&#x39;&#50;&#x2e;&#49;&#54;&#x38;&#x2e;&#x35;&#x39;&#x2e;&#51;&#52;</a></p>
+<p>ssh <a href="&#x6d;&#97;&#105;&#x6c;&#116;&#111;&#58;&#118;&#x61;&#x67;&#114;&#x61;&#110;&#116;&#64;&#49;&#x39;&#50;&#46;&#x31;&#x36;&#x38;&#x2e;&#x35;&#57;&#x2e;&#x33;&#52;">&#118;&#x61;&#103;&#x72;&#x61;&#110;&#116;&#x40;&#49;&#57;&#50;&#46;&#49;&#54;&#x38;&#46;&#53;&#x39;&#46;&#x33;&#52;</a></p>
 
 <p>[vagrant@web ~]$ mysql -u root -p</p>
 
