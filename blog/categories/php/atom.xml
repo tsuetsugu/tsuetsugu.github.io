@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Php | ポンコツエンジニアの徒然Blog]]></title>
+  <link href="http://tsuetsugu.github.io/blog/categories/php/atom.xml" rel="self"/>
+  <link href="http://tsuetsugu.github.io/"/>
+  <updated>2015-01-22T20:26:22+09:00</updated>
+  <id>http://tsuetsugu.github.io/</id>
+  <author>
+    <name><![CDATA[Toshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[勉強がてら仮想環境をちゃんと作ってみる]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/01/11/learn-vagrant-and-chef/"/>
+    <updated>2015-01-11T00:12:05+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/01/11/learn-vagrant-and-chef</id>
+    <content type="html"><![CDATA[<p>知らないこともたくさんありすぎて何から手を付けるべきかと悩むが
+一先ずChef勉強ついでにPHPの開発環境も作成しようかと・・・。</p>
+
+<p><em>仮想環境での環境構築勉強　VirtualBoxで作成<br/>
+</em>Chefもついでに勉強<br/>
+*PHPもついでに勉強</p>
+
+<p>VirtualBox、Vagrantは前にインストールしてるので、
+仮想環境作成から。</p>
+
+<h2>Vagrantの設定</h2>
+
+<p>コマンドは下記</p>
+
+<pre><code>vagrant init phpms https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
+</code></pre>
+
+<p>OS何がいいかわかんないからCentOS6.5で・・・。</p>
+
+<p><code>vagrant init</code>ではVagrantfileが作成される。</p>
+
+<h2>Boxの作成</h2>
+
+<p>vagrant up で立ち上げ</p>
+
+<p>初回はOSダウンロードからなので、ちょっと待つ。</p>
+
+<h2>SSH接続</h2>
+
+<p>ダウンロード出来たら、SSHで接続</p>
+
+<pre><code>vagrant ssh
+[vagrant@vagrant-centos65 ~]$ 
+</code></pre>
+
+<p>上記一先ず立ち上がったので、 SSH抜けて一旦停止</p>
+
+<pre><code>[vagrant@vagrant-centos65 ~]$ exit  
+vagrant halt  
+</code></pre>
+
+<p>眠いので明日以降に続きを・・・。</p>
+
+<p> 昨日の続き・・・</p>
+
+<h2>Chef Soloのインストール</h2>
+
+<pre><code>curl -L https://www.opscode.com/chef/install.sh | sudo bash
+</code></pre>
+
+<p>結構時間かかる・・・。
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ curl -L &lt;a href="https://www.opscode.com/chef/install.sh"&gt;https://www.opscode.com/chef/install.sh&lt;/a&gt; | sudo bash&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;・・・&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;Thank you for installing Chef!</span></code></pre></td></tr></table></div></figure></p>
+
+<p>こうなればOKだが、ネットサーフィンしてたらChef-soloは時代遅れとここで気づく・・・。</p>
+
+<p>今主流はChef Client だそうで、本はChef-soloだったので、こりゃだめだということでAnsibleに乗り換え・・・。</p>
+
+<p>はぁ、情報弱者すぎるポンコツ・・・。</p>
+
+<p>ついでだから仮想環境捨てる練習で・・・・</p>
+
+<p>vagrant destroy</p>
+
+<p>ということで最初からやり直し・・・続きはまた今度</p>
+]]></content>
+  </entry>
+  
+</feed>

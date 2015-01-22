@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[ポンコツエンジニアの徒然Blog]]></title>
-  <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Vagrant | ポンコツエンジニアの徒然Blog]]></title>
+  <link href="http://tsuetsugu.github.io/blog/categories/vagrant/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
   <updated>2015-01-22T20:26:22+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
@@ -12,55 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[そもそも何を勉強しようか？]]></title>
-    <link href="http://tsuetsugu.github.io/blog/2015/01/20/learn-progiramming-for-free/"/>
-    <updated>2015-01-20T23:11:26+09:00</updated>
-    <id>http://tsuetsugu.github.io/blog/2015/01/20/learn-progiramming-for-free</id>
-    <content type="html"><![CDATA[<p>環境構築もやってみたので、今度は言語を何か学ぼうと思い
-本を使って学ぶか、適当にコーディングしていくかと悩みながら
-入りがないとなかなか手が付けられなかったので
-webサービスで何かないかなと探していたらこんなサイトがありました。</p>
-
-<p><strong>【無料で入門！】ゼロからプログラミングが学べるWEBサービス14選</strong></p>
-
-<p><a href="http://blog.codecamp.jp/learning_programming_for_free/">http://blog.codecamp.jp/learning_programming_for_free/</a></p>
-
-<p>ゼロじゃないけど、ほとんどゼロなんで、</p>
-
-<p>良さそうだなぁと思うのを選択</p>
-
-<p><strong>Progate</strong></p>
-
-<p><a href="http://prog-8.com">http://prog-8.com</a></p>
-
-<p>何と二人の東大生プログラマが作ったそうで、
-今学べるのは以下の３つです。</p>
-
-<p>・HTML/CSS</p>
-
-<p>・PHP</p>
-
-<p>・jQuery</p>
-
-<p>スライドで説明があり、その後演習問題として、画面でコーディング。
-その場でコーディングしながらプレビューもみれるので、
-どんな風になるかが一目でわかります。</p>
-
-<p>こりゃすごい。さくっと出来てしまうので、</p>
-
-<p>没頭できるのがいいですね。
-土曜日出勤でしたが暇だったので、ホントはいけないですがコソコソ６時間くらいやってました。
-初心者でもわかりやすい作りになっているのがホント素晴らしい・・・。</p>
-
-<p>HTML/CSS、PHPは初級は全部やって、jQueryは途中まででした。</p>
-
-<p>一つやったからといってスキルがあがる訳ではないですが
-色々使い倒していれば、ちょっとは理解が増えるはずなので、
-他のも試して理解が増えたら、PaizaとかCodeIQで実践したいと思います。</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[環境構築Ansibleでやってみた]]></title>
@@ -95,13 +46,13 @@ webサービスで何かないかなと探していたらこんなサイトが�
 
 <p>すでにあるんで、これでOK？</p>
 
-<p>cat .ssh/id_rsa.pub | ssh <a href="&#109;&#x61;&#105;&#x6c;&#x74;&#111;&#58;&#x76;&#x61;&#103;&#114;&#97;&#x6e;&#x74;&#64;&#49;&#x39;&#50;&#x2e;&#x31;&#54;&#x38;&#46;&#53;&#57;&#x2e;&#51;&#52;">&#118;&#97;&#103;&#114;&#x61;&#x6e;&#116;&#64;&#x31;&#57;&#50;&#46;&#x31;&#54;&#56;&#46;&#x35;&#57;&#46;&#x33;&#x34;</a> &ldquo;cat >> .ssh/authorized_keys”</p>
+<p>cat .ssh/id_rsa.pub | ssh <a href="&#109;&#x61;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#118;&#x61;&#x67;&#114;&#97;&#110;&#116;&#x40;&#x31;&#57;&#50;&#46;&#49;&#x36;&#56;&#x2e;&#x35;&#57;&#x2e;&#x33;&#x34;">&#118;&#x61;&#103;&#114;&#97;&#x6e;&#116;&#64;&#49;&#x39;&#x32;&#x2e;&#x31;&#x36;&#x38;&#x2e;&#x35;&#57;&#46;&#51;&#52;</a> &ldquo;cat >> .ssh/authorized_keys”</p>
 
 <p>echo &ldquo;[web]&rdquo; > hosts</p>
 
 <p>echo &ldquo;192.168.59.34&rdquo; > hosts</p>
 
-<p>ssh <a href="&#109;&#97;&#x69;&#x6c;&#116;&#111;&#58;&#118;&#97;&#103;&#114;&#97;&#110;&#116;&#x40;&#x31;&#57;&#50;&#46;&#x31;&#54;&#56;&#46;&#53;&#57;&#46;&#x33;&#x34;">&#x76;&#97;&#103;&#x72;&#97;&#x6e;&#116;&#x40;&#x31;&#57;&#x32;&#x2e;&#49;&#x36;&#x38;&#x2e;&#x35;&#x39;&#46;&#51;&#x34;</a> ※パスワードはvagrant</p>
+<p>ssh <a href="&#x6d;&#97;&#105;&#x6c;&#x74;&#x6f;&#58;&#118;&#97;&#x67;&#114;&#x61;&#x6e;&#x74;&#64;&#49;&#x39;&#50;&#46;&#49;&#x36;&#56;&#x2e;&#x35;&#x39;&#x2e;&#51;&#52;">&#x76;&#97;&#103;&#114;&#97;&#110;&#116;&#x40;&#x31;&#57;&#x32;&#46;&#x31;&#54;&#x38;&#x2e;&#x35;&#x39;&#x2e;&#51;&#52;</a> ※パスワードはvagrant</p>
 
 <p>一先ず繋がればOK・・・。</p>
 
@@ -252,7 +203,7 @@ ok: [192.168.59.34]</p>
 
 <h2>mysqlも確認</h2>
 
-<p>ssh <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#x6f;&#58;&#x76;&#97;&#x67;&#114;&#x61;&#x6e;&#x74;&#x40;&#49;&#57;&#50;&#46;&#49;&#x36;&#x38;&#x2e;&#53;&#x39;&#46;&#51;&#52;">&#118;&#97;&#x67;&#x72;&#x61;&#110;&#x74;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#54;&#56;&#x2e;&#x35;&#57;&#x2e;&#x33;&#52;</a></p>
+<p>ssh <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#x76;&#x61;&#x67;&#114;&#x61;&#110;&#x74;&#64;&#49;&#x39;&#x32;&#46;&#x31;&#x36;&#56;&#46;&#x35;&#x39;&#x2e;&#51;&#x34;">&#x76;&#97;&#x67;&#x72;&#97;&#110;&#x74;&#64;&#x31;&#57;&#x32;&#46;&#49;&#54;&#x38;&#46;&#x35;&#x39;&#46;&#51;&#x34;</a></p>
 
 <p>[vagrant@web ~]$ mysql -u root -p</p>
 
@@ -297,9 +248,8 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
 
 <p>コマンドは下記</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant init phpms https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box</span></code></pre></td></tr></table></div></figure>
-
+<pre><code>vagrant init phpms https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
+</code></pre>
 
 <p>OS何がいいかわかんないからCentOS6.5で・・・。</p>
 
@@ -315,19 +265,15 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
 
 <p>ダウンロード出来たら、SSHで接続</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant ssh
-</span><span class='line'>[vagrant@vagrant-centos65 ~]$ </span></code></pre></td></tr></table></div></figure>
-
+<pre><code>vagrant ssh
+[vagrant@vagrant-centos65 ~]$ 
+</code></pre>
 
 <p>上記一先ず立ち上がったので、 SSH抜けて一旦停止</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ exit  
-</span><span class='line'>vagrant halt  </span></code></pre></td></tr></table></div></figure>
-
+<pre><code>[vagrant@vagrant-centos65 ~]$ exit  
+vagrant halt  
+</code></pre>
 
 <p>眠いので明日以降に続きを・・・。</p>
 
@@ -335,23 +281,20 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
 
 <h2>Chef Soloのインストール</h2>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://www.opscode.com/chef/install.sh | sudo bash</span></code></pre></td></tr></table></div></figure>
+<pre><code>curl -L https://www.opscode.com/chef/install.sh | sudo bash
+</code></pre>
 
-
-<p>結構時間かかる・・・。</p>
-
+<p>結構時間かかる・・・。
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
+</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ curl -L &lt;a href="https://www.opscode.com/chef/install.sh"&gt;https://www.opscode.com/chef/install.sh&lt;/a&gt; | sudo bash&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>・・・
+</span><span class='line'>&lt;p&gt;・・・&lt;/p&gt;
 </span><span class='line'>
-</span><span class='line'>Thank you for installing Chef!</span></code></pre></td></tr></table></div></figure>
-
+</span><span class='line'>&lt;p&gt;Thank you for installing Chef!</span></code></pre></td></tr></table></div></figure></p>
 
 <p>こうなればOKだが、ネットサーフィンしてたらChef-soloは時代遅れとここで気づく・・・。</p>
 
@@ -364,22 +307,6 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
 <p>vagrant destroy</p>
 
 <p>ということで最初からやり直し・・・続きはまた今度</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OctpressでBlogを始めてみた]]></title>
-    <link href="http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages/"/>
-    <updated>2014-12-25T22:53:06+09:00</updated>
-    <id>http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages</id>
-    <content type="html"><![CDATA[<p>なんもしないと勉強にならないということで</p>
-
-<p>アウトプットも兼ねてBlogを開始。</p>
-
-<p>テーマとかもいじりたいが、
-そもそもMarkdownの記述もわからないとか
-ホント微妙なエンジニアだなと思いながら、
-「脱ポンコツ」を目指してがんばろう。。。</p>
 ]]></content>
   </entry>
   
