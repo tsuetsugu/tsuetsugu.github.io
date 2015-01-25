@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Html | ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/html/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-01-22T20:26:22+09:00</updated>
+  <updated>2015-01-25T21:34:39+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -14,51 +14,94 @@
 
   
   <entry>
+    <title type="html"><![CDATA[HTML/CSSの基本を勉強]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/01/25/learn-html-css/"/>
+    <updated>2015-01-25T21:20:05+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/01/25/learn-html-css</id>
+    <content type="html"><![CDATA[<h2>HTML/CSSの勉強</h2>
+
+<p>今までのキャリアがパッケージソフトの開発がほとんどで実はHTMLとかあんまりわかっていなかったので
+基礎からちゃんとやろうということで、下記書籍を参考に勉強を始めてみました。</p>
+
+<p><strong>HTML&amp;CSS標準デザイン講座 【HTML5&amp;CSS3対応】</strong></p>
+
+<p><a href="http://www.amazon.co.jp/HTML-CSS%E6%A8%99%E6%BA%96%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E8%AC%9B%E5%BA%A7-%E3%80%90HTML5-CSS3%E5%AF%BE%E5%BF%9C%E3%80%91-%E3%81%82%E3%81%91%E3%81%BF/dp/4798129674">http://www.amazon.co.jp/HTML-CSS%E6%A8%99%E6%BA%96%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E8%AC%9B%E5%BA%A7-%E3%80%90HTML5-CSS3%E5%AF%BE%E5%BF%9C%E3%80%91-%E3%81%82%E3%81%91%E3%81%BF/dp/4798129674</a></p>
+
+<p>Lesson形式なので、自分にとってはわかりやすいですね。</p>
+
+<p>あんまり時間をかけるのもあれなんで、集中的に自分で動かして実施中。</p>
+
+<h3>vim操作</h3>
+
+<p>vimの操作に慣れるため、入力は基本的にコマンドライン上でやりますが、</p>
+
+<p>やっぱり慣れないと、使いづらい・・・。</p>
+
+<p>ということで、今回使用したvimの操作をメモ的に記載。</p>
+
+<ul>
+<li><p>shift + g  → 最終行に飛ぶ</p></li>
+<li><p>dd(連続押し) → １行切取り ※先頭に数字を入れるとその行数分切取り</p></li>
+<li><p>yy  →　カーソル行コピー　※先頭に数字を入れるとその行数分コピー</p></li>
+<li><p>p　→　カーソル行に貼付け　※先頭に数字を入れるとその行数分貼付け</p></li>
+</ul>
+
+]]></content>
+  </entry>
+  
+  <entry>
     <title type="html"><![CDATA[そもそも何を勉強しようか？]]></title>
     <link href="http://tsuetsugu.github.io/blog/2015/01/20/learn-progiramming-for-free/"/>
     <updated>2015-01-20T23:11:26+09:00</updated>
     <id>http://tsuetsugu.github.io/blog/2015/01/20/learn-progiramming-for-free</id>
-    <content type="html"><![CDATA[<p>環境構築もやってみたので、今度は言語を何か学ぼうと思い
-本を使って学ぶか、適当にコーディングしていくかと悩みながら
-入りがないとなかなか手が付けられなかったので
-webサービスで何かないかなと探していたらこんなサイトがありました。</p>
+    <content type="html"><![CDATA[<p>環境構築もやってみたので、今度は言語を何か学ぼうと思い</p>
+
+<p>本を使って学ぶか、適当にコーディングしていくかと悩みながら</p>
+
+<p>入りがないとなかなか手が付けられなかったので</p>
+
+<p>webサービスで何かないかなと探していたらこんなサイトがありました。</p>
 
 <p><strong>【無料で入門！】ゼロからプログラミングが学べるWEBサービス14選</strong></p>
 
 <p><a href="http://blog.codecamp.jp/learning_programming_for_free/">http://blog.codecamp.jp/learning_programming_for_free/</a></p>
 
-<p>ゼロじゃないけど、ほとんどゼロなんで、</p>
-
-<p>良さそうだなぁと思うのを選択</p>
+<p>ゼロじゃないけど、ほとんどゼロなんで、良さそうだなぁと思うのを選択</p>
 
 <p><strong>Progate</strong></p>
 
 <p><a href="http://prog-8.com">http://prog-8.com</a></p>
 
-<p>何と二人の東大生プログラマが作ったそうで、
-今学べるのは以下の３つです。</p>
+<p>何と二人の東大生プログラマが作ったそうで、今学べるのは以下の３つです。</p>
 
-<p>・HTML/CSS</p>
+<ul>
+<li>HTML/CSS</li>
+<li>PHP</li>
+<li>jQuery</li>
+</ul>
 
-<p>・PHP</p>
 
-<p>・jQuery</p>
+<p>スライドで説明があり、その後演習問題として、画面でコーディング。</p>
 
-<p>スライドで説明があり、その後演習問題として、画面でコーディング。
-その場でコーディングしながらプレビューもみれるので、
-どんな風になるかが一目でわかります。</p>
+<p>その場でコーディングしながらプレビューもみれるので、</p>
 
-<p>こりゃすごい。さくっと出来てしまうので、</p>
+<p>どんな風になるかが一目でわかります。</p>
 
-<p>没頭できるのがいいですね。
-土曜日出勤でしたが暇だったので、ホントはいけないですがコソコソ６時間くらいやってました。
-初心者でもわかりやすい作りになっているのがホント素晴らしい・・・。</p>
+<p>こりゃすごい。さくっと出来てしまうので、没頭できるのがいいですね。</p>
+
+<p>土曜日出勤でしたが暇だったので、</p>
+
+<p>ホントはいけないですがコソコソ６時間くらいやってました。</p>
+
+<p>初心者でもわかりやすい作りになっているのがホント素晴らしい・・・。</p>
 
 <p>HTML/CSS、PHPは初級は全部やって、jQueryは途中まででした。</p>
 
-<p>一つやったからといってスキルがあがる訳ではないですが
-色々使い倒していれば、ちょっとは理解が増えるはずなので、
-他のも試して理解が増えたら、PaizaとかCodeIQで実践したいと思います。</p>
+<p>一つやったからといってスキルがあがる訳ではないですが</p>
+
+<p>色々使い倒していれば、ちょっとは理解が増えるはずなので、</p>
+
+<p>他のも試して理解が増えたら、PaizaとかCodeIQで実践したいと思います。</p>
 ]]></content>
   </entry>
   

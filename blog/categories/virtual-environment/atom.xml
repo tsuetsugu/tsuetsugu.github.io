@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Virtual Environment | ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/virtual-environment/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-01-22T20:26:22+09:00</updated>
+  <updated>2015-01-25T21:34:39+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -20,55 +20,70 @@
     <id>http://tsuetsugu.github.io/blog/2015/01/13/make-environment-with-ansible</id>
     <content type="html"><![CDATA[<p>Chefは挫折してしまったので、Ansibleで再度環境構築を・・・。</p>
 
-<h1>Vagrantを使ってサーバー準備</h1>
+<h2>Vagrantを使ってサーバー準備</h2>
 
-<h2>Vagrantfileを作成</h2>
+<h3>Vagrantfileを作成</h3>
 
-<p>$ vagrant init chef/centos-6.5</p>
+<pre><code>$ vagrant init chef/centos-6.5
+</code></pre>
 
-<h2>Vagrantfile編集</h2>
+<h3>Vagrantfile編集</h3>
 
-<p> # config.vm.box = &ldquo;chef/centos-6.5&rdquo; #コメントアウト</p>
+<pre><code> # config.vm.box = "chef/centos-6.5" #コメントアウト
 
-<p>  config.vm.define &ldquo;web&rdquo; do |node|<br/>
-    node.vm.box = &ldquo;chef/centos-6.5&rdquo;<br/>
-    node.vm.hostname = &ldquo;web&rdquo;<br/>
-    node.vm.network :private_network, ip: &ldquo;192.168.59.34&rdquo;<br/>
-  end</p>
+  config.vm.define "web" do |node|  
+    node.vm.box = "chef/centos-6.5"  
+    node.vm.hostname = "web"  
+    node.vm.network :private_network, ip: "192.168.59.34"  
+  end
+</code></pre>
 
-<h2>仮想環境立ち上げ</h2>
+<h3>仮想環境立ち上げ</h3>
 
-<p>Vagrant up</p>
+<pre><code>Vagrant up
+</code></pre>
 
 <p>回線が微妙なので長い・・・。</p>
 
 <h2>鍵の作成</h2>
 
-<p>すでにあるんで、これでOK？</p>
+<p>すでにあるんで、これでOK？
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat .ssh/id_rsa.pub | ssh &lt;a href="&#109;&#97;&#105;&#x6c;&#116;&#111;&#58;&#x76;&#x61;&#x67;&#114;&#97;&#110;&#x74;&#x40;&#x31;&#57;&#50;&#46;&#x31;&#x36;&#x38;&#46;&#53;&#57;&#46;&#x33;&#x34;"&gt;&#x76;&#97;&#x67;&#114;&#97;&#x6e;&#x74;&#x40;&#x31;&#57;&#50;&#46;&#x31;&#54;&#x38;&#x2e;&#x35;&#57;&#46;&#x33;&#52;&lt;/a&gt; &ldquo;cat &gt;&gt; .ssh/authorized_keys”&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;echo &ldquo;[web]&rdquo; &gt; hosts&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;echo &ldquo;192.168.59.34&rdquo; &gt; hosts&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;ssh &lt;a href="&#x6d;&#97;&#105;&#108;&#x74;&#111;&#58;&#x76;&#x61;&#x67;&#x72;&#x61;&#110;&#x74;&#64;&#x31;&#57;&#x32;&#46;&#49;&#x36;&#x38;&#46;&#x35;&#57;&#x2e;&#x33;&#52;"&gt;&#118;&#97;&#103;&#x72;&#x61;&#110;&#x74;&#64;&#49;&#x39;&#x32;&#46;&#49;&#54;&#x38;&#46;&#x35;&#x39;&#x2e;&#51;&#52;&lt;/a&gt; ※パスワードはvagrant
+</span><span class='line'>&lt;code&gt;
+</span><span class='line'>一先ず繋がればOK・・・。
+</span><span class='line'>&lt;/code&gt;
+</span><span class='line'>[vagrant@web ~]$</span></code></pre></td></tr></table></div></figure></p>
 
-<p>cat .ssh/id_rsa.pub | ssh <a href="&#109;&#97;&#105;&#108;&#x74;&#111;&#58;&#118;&#x61;&#103;&#x72;&#x61;&#110;&#x74;&#64;&#49;&#57;&#50;&#46;&#x31;&#54;&#x38;&#46;&#x35;&#57;&#x2e;&#x33;&#52;">&#118;&#x61;&#103;&#114;&#97;&#110;&#116;&#x40;&#49;&#x39;&#x32;&#x2e;&#x31;&#x36;&#56;&#x2e;&#53;&#57;&#x2e;&#51;&#x34;</a> &ldquo;cat >> .ssh/authorized_keys”</p>
+<h2>Ansibleの設定</h2>
 
-<p>echo &ldquo;[web]&rdquo; > hosts</p>
+<h3>Ansibleを管理側にインストール</h3>
 
-<p>echo &ldquo;192.168.59.34&rdquo; > hosts</p>
+<pre><code>brew install unusable
+</code></pre>
 
-<p>ssh <a href="&#x6d;&#x61;&#x69;&#x6c;&#x74;&#111;&#x3a;&#118;&#97;&#x67;&#114;&#x61;&#x6e;&#x74;&#x40;&#x31;&#x39;&#x32;&#46;&#49;&#54;&#x38;&#x2e;&#x35;&#57;&#46;&#x33;&#52;">&#x76;&#x61;&#x67;&#x72;&#x61;&#110;&#116;&#64;&#x31;&#x39;&#x32;&#x2e;&#49;&#x36;&#56;&#46;&#53;&#57;&#x2e;&#51;&#x34;</a> ※パスワードはvagrant</p>
+<h3>Ansible疎通確認</h3>
 
-<p>一先ず繋がればOK・・・。</p>
+<pre><code>ansible -i hosts all -m ping
 
-<p>[vagrant@web ~]$</p>
-
-<h1>Ansibleの設定</h1>
-
-<h2>Ansibleを管理側にインストール</h2>
-
-<p>brew install unusable</p>
-
-<h2>Ansible疎通確認</h2>
-
-<p>ansible -i hosts all -m ping</p>
-
-<p>ERROR: Unable to find an inventory file, specify one with -i ?</p>
+ERROR: Unable to find an inventory file, specify one with -i ?
+</code></pre>
 
 <p>inventory fileを指定しろというエラー・・・。</p>
 
@@ -76,151 +91,187 @@
 インベントリファイルを編集しないといけないがそもそもどこに格納されてるんだろと思ったが
 さっき作ったhostsか？</p>
 
-<p>ということで、ホームディレクトリに移動して再度
-ansible -i hosts all -m ping</p>
+<p>ということで、ホームディレクトリに移動して再度`
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ansible -i hosts all -m ping&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;192.168.59.34 | FAILED =&gt; SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue</span></code></pre></td></tr></table></div></figure>
+実行できたが違うエラー・・・。何だろと検索してるとSSHのコンフィグあたりが怪しいということで</p>
 
-<p>192.168.59.34 | FAILED => SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue</p>
+<pre><code>vim ~/.ssh/config
+</code></pre>
 
-<p>実行できたが違うエラー・・・。何だろと検索してるとSSHのコンフィグあたりが怪しいということで</p>
+<h3>記述追加</h3>
 
-<p>vim ~/.ssh/config</p>
+<pre><code>Host 192.168.59.34  
+  HostName 192.168.59.34  
+  IdentityFile ~/.ssh/id_rsa  
+  User vagrant  
+</code></pre>
 
-<h2>記述追加</h2>
+<p>設定後再実行すると・・・</p>
 
-<p>Host 192.168.59.34<br/>
-  HostName 192.168.59.34<br/>
-  IdentityFile ~/.ssh/id_rsa<br/>
-  User vagrant</p>
-
-<p>設定後再実行すると・・・
-192.168.59.34 | success >> {<br/>
-    &ldquo;changed&rdquo;: false, <br/>
-    &ldquo;ping&rdquo;: &ldquo;pong&rdquo;<br/>
-}</p>
+<pre><code>192.168.59.34 | success &gt;&gt; {  
+    "changed": false,   
+    "ping": "pong"  
+}  
+</code></pre>
 
 <p>成功したようだけど、この辺全然わからない・・・。
 一先ず先に進む・・・。</p>
 
-<h2>仮想環境側のPythonインストール確認</h2>
+<h3>仮想環境側のPythonインストール確認</h3>
 
 <p>管理ホストは2.6が必要で、対象ホストは2.4でいいらしい。
 ※但し、2.4の場合は依存ライブラリーが必要</p>
 
 <p>バージョン確認
+<code>
 [vagrant@web ~]$ python -V
-Python 2.6.6</p>
-
-<p>入ってるのでOK</p>
+Python 2.6.6
+</code>
+入ってるのでOK</p>
 
 <h2>Playbookの作成</h2>
 
-<p>$ vim playbook.yml</p>
+<pre><code>$ vim playbook.yml
+</code></pre>
 
 <p>内容はこのサイトから<a href="http://liginc.co.jp/web/programming/server/129004">http://liginc.co.jp/web/programming/server/129004</a></p>
 
-<h2>playbook実行</h2>
+<h3>playbook実行</h3>
 
-<p>suetsugutoshiyuki-no-MacBook-Pro:~ toshi$ ansible-playbook -i hosts playbook.yml</p>
+<pre><code>suetsugutoshiyuki-no-MacBook-Pro:~ toshi$ ansible-playbook -i hosts playbook.yml
 
-<p>PLAY [192.168.59.34] **********************************************************</p>
+PLAY [192.168.59.34] ********************************************************** 
 
-<p>GATHERING FACTS ***************************************************************
-ok: [192.168.59.34]</p>
+GATHERING FACTS *************************************************************** 
+ok: [192.168.59.34]
 
-<p>TASK: [Install basepackage] ***************************************************
-changed: [192.168.59.34] => (item=wget,ntp,vim)</p>
+TASK: [Install basepackage] *************************************************** 
+changed: [192.168.59.34] =&gt; (item=wget,ntp,vim)
 
-<p>TASK: [SELinux Disable] *******************************************************
-changed: [192.168.59.34]</p>
+TASK: [SELinux Disable] ******************************************************* 
+changed: [192.168.59.34]
 
-<p>TASK: [Edit selinux config] ***************************************************
-changed: [192.168.59.34]</p>
+TASK: [Edit selinux config] *************************************************** 
+changed: [192.168.59.34]
 
-<p>TASK: [stop iptabes] **********************************************************
-ok: [192.168.59.34]</p>
+TASK: [stop iptabes] ********************************************************** 
+ok: [192.168.59.34]
 
-<p>TASK: [Install apache] ********************************************************
-changed: [192.168.59.34]</p>
+TASK: [Install apache] ******************************************************** 
+changed: [192.168.59.34]
 
-<p>TASK: [Install php] ***********************************************************
-changed: [192.168.59.34] => (item=php,php-devel,php-mbstring,php-mysql,php-gd)</p>
+TASK: [Install php] *********************************************************** 
+changed: [192.168.59.34] =&gt; (item=php,php-devel,php-mbstring,php-mysql,php-gd)
 
-<p>TASK: [Install mysql] *********************************************************
-changed: [192.168.59.34]</p>
+TASK: [Install mysql] ********************************************************* 
+changed: [192.168.59.34]
 
-<p>NOTIFIED: [restart apache] ****************************************************
-changed: [192.168.59.34]</p>
+NOTIFIED: [restart apache] **************************************************** 
+changed: [192.168.59.34]
 
-<p>NOTIFIED: [mysql setup] *******************************************************
-changed: [192.168.59.34]</p>
+NOTIFIED: [mysql setup] ******************************************************* 
+changed: [192.168.59.34]
 
-<p>NOTIFIED: [mysql set password] ************************************************
-changed: [192.168.59.34]</p>
+NOTIFIED: [mysql set password] ************************************************ 
+changed: [192.168.59.34]
 
-<p>PLAY RECAP ********************************************************************
-192.168.59.34              : ok=11   changed=9    unreachable=0    failed=0</p>
+PLAY RECAP ******************************************************************** 
+192.168.59.34              : ok=11   changed=9    unreachable=0    failed=0
+</code></pre>
 
 <p>うまくいってるぽいので、確認のため再実行</p>
 
-<p>※hostsは修正</p>
+<p>※hostsは修正
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PLAY [web] ********************************************************************&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;GATHERING FACTS ***************************************************************
+</span><span class='line'>ok: [192.168.59.34]&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;TASK: [Install basepackage] ***************************************************
+</span><span class='line'>ok: [192.168.59.34] =&gt; (item=wget,ntp,vim)&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;TASK: [SELinux Disable] *******************************************************
+</span><span class='line'>changed: [192.168.59.34]&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;TASK: [Edit selinux config] ***************************************************
+</span><span class='line'>changed: [192.168.59.34]&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;TASK: [stop iptabes] **********************************************************
+</span><span class='line'>ok: [192.168.59.34]&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;TASK: [Install apache] ********************************************************
+</span><span class='line'>ok: [192.168.59.34]&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;TASK: [Install php] ***********************************************************
+</span><span class='line'>ok: [192.168.59.34] =&gt; (item=php,php-devel,php-mbstring,php-mysql,php-gd)&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;TASK: [Install mysql] *********************************************************
+</span><span class='line'>ok: [192.168.59.34]&lt;/p&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;p&gt;PLAY RECAP ********************************************************************
+</span><span class='line'>192.168.59.34              : ok=8    changed=2    unreachable=0    failed=0</span></code></pre></td></tr></table></div></figure>
+２回目は再度インストールはしないので早い。</p>
 
-<p>PLAY [web] ********************************************************************</p>
-
-<p>GATHERING FACTS ***************************************************************
-ok: [192.168.59.34]</p>
-
-<p>TASK: [Install basepackage] ***************************************************
-ok: [192.168.59.34] => (item=wget,ntp,vim)</p>
-
-<p>TASK: [SELinux Disable] *******************************************************
-changed: [192.168.59.34]</p>
-
-<p>TASK: [Edit selinux config] ***************************************************
-changed: [192.168.59.34]</p>
-
-<p>TASK: [stop iptabes] **********************************************************
-ok: [192.168.59.34]</p>
-
-<p>TASK: [Install apache] ********************************************************
-ok: [192.168.59.34]</p>
-
-<p>TASK: [Install php] ***********************************************************
-ok: [192.168.59.34] => (item=php,php-devel,php-mbstring,php-mysql,php-gd)</p>
-
-<p>TASK: [Install mysql] *********************************************************
-ok: [192.168.59.34]</p>
-
-<p>PLAY RECAP ********************************************************************
-192.168.59.34              : ok=8    changed=2    unreachable=0    failed=0</p>
-
-<p>２回目は再度インストールはしないので早い。</p>
-
-<h2>Apacheの起動確認</h2>
+<h3>Apacheの起動確認</h3>
 
 <p><a href="http://192.168.59.34/">http://192.168.59.34/</a></p>
 
 <p>Apacheの画面が出ればOK!</p>
 
-<h2>mysqlも確認</h2>
+<h3>mysqlも確認</h3>
 
-<p>ssh <a href="&#x6d;&#97;&#x69;&#x6c;&#116;&#x6f;&#x3a;&#118;&#97;&#x67;&#114;&#97;&#x6e;&#x74;&#x40;&#x31;&#x39;&#x32;&#46;&#49;&#54;&#x38;&#46;&#53;&#57;&#46;&#51;&#52;">&#118;&#97;&#x67;&#x72;&#x61;&#110;&#116;&#x40;&#x31;&#x39;&#x32;&#46;&#x31;&#x36;&#56;&#46;&#53;&#x39;&#x2e;&#x33;&#52;</a></p>
+<pre><code>ssh vagrant@192.168.59.34
 
-<p>[vagrant@web ~]$ mysql -u root -p</p>
+[vagrant@web ~]$ mysql -u root -p
 
-<p>Enter password:
+Enter password: 
 Welcome to the MySQL monitor.  Commands end with ; or \g.
 Your MySQL connection id is 3
-Server version: 5.1.73 Source distribution</p>
+Server version: 5.1.73 Source distribution
 
-<p>Copyright &copy; 2000, 2013, Oracle and/or its affiliates. All rights reserved.</p>
+Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
 
-<p>Oracle is a registered trademark of Oracle Corporation and/or its
+Oracle is a registered trademark of Oracle Corporation and/or its
 affiliates. Other names may be trademarks of their respective
-owners.</p>
+owners.
 
-<p>Type &lsquo;help;&rsquo; or &lsquo;\h&rsquo; for help. Type &lsquo;\c&rsquo; to clear the current input statement.</p>
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
 
-<p>mysql></p>
+mysql&gt;
+</code></pre>
 
 <p>出来た！！長かった・・・。</p>
 

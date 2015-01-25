@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Programming | ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/programming/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-01-22T20:26:22+09:00</updated>
+  <updated>2015-01-25T21:34:39+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -18,47 +18,54 @@
     <link href="http://tsuetsugu.github.io/blog/2015/01/20/learn-progiramming-for-free/"/>
     <updated>2015-01-20T23:11:26+09:00</updated>
     <id>http://tsuetsugu.github.io/blog/2015/01/20/learn-progiramming-for-free</id>
-    <content type="html"><![CDATA[<p>環境構築もやってみたので、今度は言語を何か学ぼうと思い
-本を使って学ぶか、適当にコーディングしていくかと悩みながら
-入りがないとなかなか手が付けられなかったので
-webサービスで何かないかなと探していたらこんなサイトがありました。</p>
+    <content type="html"><![CDATA[<p>環境構築もやってみたので、今度は言語を何か学ぼうと思い</p>
+
+<p>本を使って学ぶか、適当にコーディングしていくかと悩みながら</p>
+
+<p>入りがないとなかなか手が付けられなかったので</p>
+
+<p>webサービスで何かないかなと探していたらこんなサイトがありました。</p>
 
 <p><strong>【無料で入門！】ゼロからプログラミングが学べるWEBサービス14選</strong></p>
 
 <p><a href="http://blog.codecamp.jp/learning_programming_for_free/">http://blog.codecamp.jp/learning_programming_for_free/</a></p>
 
-<p>ゼロじゃないけど、ほとんどゼロなんで、</p>
-
-<p>良さそうだなぁと思うのを選択</p>
+<p>ゼロじゃないけど、ほとんどゼロなんで、良さそうだなぁと思うのを選択</p>
 
 <p><strong>Progate</strong></p>
 
 <p><a href="http://prog-8.com">http://prog-8.com</a></p>
 
-<p>何と二人の東大生プログラマが作ったそうで、
-今学べるのは以下の３つです。</p>
+<p>何と二人の東大生プログラマが作ったそうで、今学べるのは以下の３つです。</p>
 
-<p>・HTML/CSS</p>
+<ul>
+<li>HTML/CSS</li>
+<li>PHP</li>
+<li>jQuery</li>
+</ul>
 
-<p>・PHP</p>
 
-<p>・jQuery</p>
+<p>スライドで説明があり、その後演習問題として、画面でコーディング。</p>
 
-<p>スライドで説明があり、その後演習問題として、画面でコーディング。
-その場でコーディングしながらプレビューもみれるので、
-どんな風になるかが一目でわかります。</p>
+<p>その場でコーディングしながらプレビューもみれるので、</p>
 
-<p>こりゃすごい。さくっと出来てしまうので、</p>
+<p>どんな風になるかが一目でわかります。</p>
 
-<p>没頭できるのがいいですね。
-土曜日出勤でしたが暇だったので、ホントはいけないですがコソコソ６時間くらいやってました。
-初心者でもわかりやすい作りになっているのがホント素晴らしい・・・。</p>
+<p>こりゃすごい。さくっと出来てしまうので、没頭できるのがいいですね。</p>
+
+<p>土曜日出勤でしたが暇だったので、</p>
+
+<p>ホントはいけないですがコソコソ６時間くらいやってました。</p>
+
+<p>初心者でもわかりやすい作りになっているのがホント素晴らしい・・・。</p>
 
 <p>HTML/CSS、PHPは初級は全部やって、jQueryは途中まででした。</p>
 
-<p>一つやったからといってスキルがあがる訳ではないですが
-色々使い倒していれば、ちょっとは理解が増えるはずなので、
-他のも試して理解が増えたら、PaizaとかCodeIQで実践したいと思います。</p>
+<p>一つやったからといってスキルがあがる訳ではないですが</p>
+
+<p>色々使い倒していれば、ちょっとは理解が増えるはずなので、</p>
+
+<p>他のも試して理解が増えたら、PaizaとかCodeIQで実践したいと思います。</p>
 ]]></content>
   </entry>
   
