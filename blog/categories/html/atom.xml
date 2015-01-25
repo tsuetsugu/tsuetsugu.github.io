@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Html | 30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
+  <title><![CDATA[Category: Html | ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/html/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-01-25T21:52:09+09:00</updated>
+  <updated>2015-01-25T22:01:54+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -18,9 +18,7 @@
     <link href="http://tsuetsugu.github.io/blog/2015/01/25/learn-html-css/"/>
     <updated>2015-01-25T21:20:05+09:00</updated>
     <id>http://tsuetsugu.github.io/blog/2015/01/25/learn-html-css</id>
-    <content type="html"><![CDATA[<h2>HTML/CSSの勉強</h2>
-
-<p>今までのキャリアがパッケージソフトの開発がほとんどで実はHTMLとかあんまりわかっていなかったので
+    <content type="html"><![CDATA[<p>今までのキャリアがパッケージソフトの開発がほとんどで実はHTMLとかあんまりわかっていなかったので
 基礎からちゃんとやろうということで、下記書籍を参考に勉強を始めてみました。</p>
 
 <p><strong>HTML&amp;CSS標準デザイン講座 【HTML5&amp;CSS3対応】</strong></p>
@@ -46,6 +44,23 @@
 <li><p>p　→　カーソル行に貼付け　※先頭に数字を入れるとその行数分貼付け</p></li>
 </ul>
 
+
+<h2>ブログのタイトル変更</h2>
+
+<p>ついでなのでちょっとブログタイトルを変更するため
+_config.ymlのtitleを編集してdeploy。</p>
+
+<pre><code>rake deploy
+</code></pre>
+
+<p>あれタイトルが変わらないので、なんでかなと思ったが
+再編しないといけないのかということで・・・ 。</p>
+
+<pre><code>rake generate
+</code></pre>
+
+<p>表示されました。
+設定をいじったときはちゃんと<strong>rake generate</strong>しないといけないのですね。</p>
 ]]></content>
   </entry>
   

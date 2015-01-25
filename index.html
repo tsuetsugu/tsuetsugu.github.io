@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>30歳前半から始めるモダンなエンジニアへの転身の足跡</title>
+  <title>ポンコツエンジニアの徒然Blog</title>
   <meta name="author" content="Toshi">
 
   
@@ -16,13 +16,13 @@
   
   <link rel="canonical" href="http://tsuetsugu.github.io">
   <link href="/favicon.png" type="image/png" rel="icon">
-  <link href="/atom.xml" rel="alternate" title="30歳前半から始めるモダンなエンジニアへの転身の足跡" type="application/atom+xml">
+  <link href="/atom.xml" rel="alternate" title="ポンコツエンジニアの徒然Blog" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
   <meta property="og:url" content="http://tsuetsugu.github.io">
-  <meta property="og:title" content="30歳前半から始めるモダンなエンジニアへの転身の足跡">
+  <meta property="og:title" content="ポンコツエンジニアの徒然Blog">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -50,7 +50,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">30歳前半から始めるモダンなエンジニアへの転身の足跡</a>
+            <a class="navbar-brand" href="/">ポンコツエンジニアの徒然Blog</a>
         </div>
 
         <div class="navbar-collapse collapse">
@@ -92,7 +92,7 @@
           <div class="row">
   <div class="page-content col-md-9">
     <div class="blog-index" itemscope itemtype="http://schema.org/Blog">
-    <meta itemprop="name" content="30歳前半から始めるモダンなエンジニアへの転身の足跡" />
+    <meta itemprop="name" content="ポンコツエンジニアの徒然Blog" />
     
     <meta itemprop="url" content="http://tsuetsugu.github.io" />
       
@@ -126,9 +126,7 @@
   </header>
 
 
-  <div class="entry-content clearfix" itemprop="articleBody description"><h2>HTML/CSSの勉強</h2>
-
-<p>今までのキャリアがパッケージソフトの開発がほとんどで実はHTMLとかあんまりわかっていなかったので
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>今までのキャリアがパッケージソフトの開発がほとんどで実はHTMLとかあんまりわかっていなかったので
 基礎からちゃんとやろうということで、下記書籍を参考に勉強を始めてみました。</p>
 
 <p><strong>HTML&amp;CSS標準デザイン講座 【HTML5&amp;CSS3対応】</strong></p>
@@ -154,6 +152,25 @@
 <li><p>p　→　カーソル行に貼付け　※先頭に数字を入れるとその行数分貼付け</p></li>
 </ul>
 
+
+<h2>ブログのタイトル変更</h2>
+
+<p>ついでなのでちょっとブログタイトルを変更するため
+_config.ymlのtitleを編集してdeploy。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あれタイトルが変わらないので、なんでかなと思ったが
+再編しないといけないのかということで・・・ 。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>表示されました。
+設定をいじったときはちゃんと<strong>rake generate</strong>しないといけないのですね。</p>
 </div>
   
   
