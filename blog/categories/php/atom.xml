@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Php | ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/php/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-01-25T22:01:54+09:00</updated>
+  <updated>2015-02-05T22:42:58+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,50 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[2月の目標]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/02/05/goal-for-february/"/>
+    <updated>2015-02-05T22:23:20+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/02/05/goal-for-february</id>
+    <content type="html"><![CDATA[<p>目標を書く前に・・・・</p>
+
+<p>色々活動していたら、
+自分のスキルを客観的に知れたので、
+現状のスキルを棚卸し。</p>
+
+<p><dl>
+  <br>
+  <dt>HTML/CSS</dt>
+  <dd>基礎をちょっと学んだ程度でサイトはまだ書いていない</dd><br>
+  <dt>PHP</dt>
+  <dd>変数書いて簡単なロジックが書ける程度</dd><br>
+  <dt>java</dt>
+  <dd>コード書けといわれたら多分書けるけど、基礎が全く抜けてる</dd><br>
+<dt>SQL</dt>
+<dd>基本の文は書けるが複雑なSQLはNG</dd><br></p>
+
+<p>うーん、全然ですね(笑)</p>
+
+<p>実はコードは書けても、どう書くべきかを理解していないのがほとんど。</p>
+
+<p>３月末までには、自分の方向性にあったスキルを磨く予定・・・。</p>
+
+<p>ということで・・・</p>
+
+<h2>２月の目標</h2>
+
+<ul>
+<li>ブログのCSSをいじってカスタマイズ</li>
+<li>PHPでローカル環境にサイト作成</li>
+<li>独自ドメインでブログを設定</li>
+</ul>
+
+
+<p>何でも完璧にするということはやめて、
+習うより慣れろをベースに２月活動します。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[勉強がてら仮想環境をちゃんと作ってみる]]></title>
