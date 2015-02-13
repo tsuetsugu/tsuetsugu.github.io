@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>OctpressでBlogを始めてみた - ポンコツエンジニアの徒然Blog</title>
+  <title>GithubPages独自ドメイン設定 - ポンコツエンジニアの徒然Blog</title>
   <meta name="author" content="Toshi">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages">
+  <link rel="canonical" href="http://tsuetsugu.github.io/blog/2015/02/13/setting-custom-domein">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="ポンコツエンジニアの徒然Blog" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages">
-  <meta property="og:title" content="OctpressでBlogを始めてみた - ポンコツエンジニアの徒然Blog">
+  <meta property="og:url" content="http://tsuetsugu.github.io/blog/2015/02/13/setting-custom-domein">
+  <meta property="og:title" content="GithubPages独自ドメイン設定 - ポンコツエンジニアの徒然Blog">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -112,27 +112,54 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-25T22:53:06+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-13T20:40:46+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        OctpressでBlogを始めてみた
+        GithubPages独自ドメイン設定
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>なんもしないと勉強にならないということで</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><h3>ドメイン取得</h3>
 
-<p>アウトプットも兼ねてBlogを開始。</p>
+<p>まずはお名前.comでドメイン登録 ▶︎
+<a href="http://www.onamae.com">お名前.com</a></p>
 
-<p>テーマとかもいじりたいが、
-そもそもMarkdownの記述もわからないとか
-ホント微妙なエンジニアだなと思いながら、
-「脱ポンコツ」を目指してがんばろう。。。</p>
+<p>今回はmodernevolve.meを取得</p>
+
+<h3>DNSの設定</h3>
+
+<ul>
+<li><p>お名前.comでドメインタブのDNS関連機能の設定を選択</p></li>
+<li><p>CNAMEに<strong>tsuetsugu.github.io</strong>を設定</p></li>
+</ul>
+
+
+<h3>CNAMEファイル作成</h3>
+
+<p>sourceディレクトリに移動</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd source </span></code></pre></td></tr></table></div></figure>
+
+
+<p>ドメインを設定してCNAMEファイル作成</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo www.modernevolve.me &gt; CNAME</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定はこれで完了</p>
+
+<p><a href="http://www.modernevolve.me/">ブログ</a>で接続できたら完了。</p>
+
+<p>初めてカスタムドメインを取得して、設定を行えたので、
+目標の一つは完了・・・。</p>
 </div>
 
 
@@ -156,13 +183,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-25T22:53:06+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-13T20:40:46+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/octpress/'>octpress</a>
+    <a class='category' href='/blog/categories/domain/'>domain</a>, <a class='category' href='/blog/categories/github/'>github</a>, <a class='category' href='/blog/categories/octpress/'>octpress</a>
   
 </span>
 
@@ -171,7 +198,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages/" data-via="" data-counturl="http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tsuetsugu.github.io/blog/2015/02/13/setting-custom-domein/" data-via="" data-counturl="http://tsuetsugu.github.io/blog/2015/02/13/setting-custom-domein/" >Tweet</a>
   
   
   
@@ -181,8 +208,8 @@
         
           <ul class="meta text-muted pager">
             
+            <li class="previous"><a href="/blog/2015/02/05/goal-for-february/" title="Previous Post: 2月の目標">&laquo; 2月の目標</a></li>
             
-            <li class="next"><a href="/blog/2015/01/11/learn-vagrant-and-chef/" title="Next Post: 勉強がてら仮想環境をちゃんと作ってみる">勉強がてら仮想環境をちゃんと作ってみる &raquo;</a></li>
             
           </ul>
         
@@ -201,7 +228,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2015/02/13/setting-custom-domein/">GithubPages独自ドメイン設定</a>
+    <a class="list-group-item active" href="/blog/2015/02/13/setting-custom-domein/">GithubPages独自ドメイン設定</a>
     
     <a class="list-group-item " href="/blog/2015/02/05/goal-for-february/">2月の目標</a>
     

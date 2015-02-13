@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
+  <title><![CDATA[ポンコツエンジニアの徒然Blog]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-02-13T20:22:35+09:00</updated>
+  <updated>2015-02-13T21:07:00+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,49 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[GithubPages独自ドメイン設定]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/02/13/setting-custom-domein/"/>
+    <updated>2015-02-13T20:40:46+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/02/13/setting-custom-domein</id>
+    <content type="html"><![CDATA[<h3>ドメイン取得</h3>
+
+<p>まずはお名前.comでドメイン登録 ▶︎
+<a href="http://www.onamae.com">お名前.com</a></p>
+
+<p>今回はmodernevolve.meを取得</p>
+
+<h3>DNSの設定</h3>
+
+<ul>
+<li><p>お名前.comでドメインタブのDNS関連機能の設定を選択</p></li>
+<li><p>CNAMEに<strong>tsuetsugu.github.io</strong>を設定</p></li>
+</ul>
+
+
+<h3>CNAMEファイル作成</h3>
+
+<p>sourceディレクトリに移動</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cd source </span></code></pre></td></tr></table></div></figure>
+
+
+<p>ドメインを設定してCNAMEファイル作成</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>echo www.modernevolve.me &gt; CNAME</span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定はこれで完了</p>
+
+<p><a href="http://www.modernevolve.me/">ブログ</a>で接続できたら完了。</p>
+
+<p>初めてカスタムドメインを取得して、設定を行えたので、
+目標の一つは完了・・・。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[2月の目標]]></title>

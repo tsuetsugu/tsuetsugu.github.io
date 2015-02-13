@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octpress | ポンコツエンジニアの徒然Blog]]></title>
-  <link href="http://tsuetsugu.github.io/blog/categories/octpress/atom.xml" rel="self"/>
+  <title><![CDATA[Category: Github | ポンコツエンジニアの徒然Blog]]></title>
+  <link href="http://tsuetsugu.github.io/blog/categories/github/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
   <updated>2015-02-13T21:07:00+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
@@ -51,22 +51,6 @@ echo www.modernevolve.me &gt; CNAME
 
 <p>初めてカスタムドメインを取得して、設定を行えたので、
 目標の一つは完了・・・。</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[OctpressでBlogを始めてみた]]></title>
-    <link href="http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages/"/>
-    <updated>2014-12-25T22:53:06+09:00</updated>
-    <id>http://tsuetsugu.github.io/blog/2014/12/25/begin-octopress-on-github-pages</id>
-    <content type="html"><![CDATA[<p>なんもしないと勉強にならないということで</p>
-
-<p>アウトプットも兼ねてBlogを開始。</p>
-
-<p>テーマとかもいじりたいが、
-そもそもMarkdownの記述もわからないとか
-ホント微妙なエンジニアだなと思いながら、
-「脱ポンコツ」を目指してがんばろう。。。</p>
 ]]></content>
   </entry>
   
