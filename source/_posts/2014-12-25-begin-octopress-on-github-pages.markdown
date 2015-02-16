@@ -3,7 +3,7 @@ layout: post
 title: "OctpressでBlogを始めてみた"
 date: 2014-12-25 22:53:06 +0900
 comments: true
-categories: ['@tsuetsugu', 'octpress']
+categories: ['octpress']
 ---
 
 なんもしないと勉強にならないということで

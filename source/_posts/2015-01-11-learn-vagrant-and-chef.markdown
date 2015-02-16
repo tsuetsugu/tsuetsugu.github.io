@@ -3,65 +3,73 @@ layout: post
 title: "勉強がてら仮想環境をちゃんと作ってみる"
 date: 2015-01-11 00:12:05 +0900
 comments: true
-categories: 
+categories: ["virtual environment", "vagrant", "chef", "php"]
 ---
 知らないこともたくさんありすぎて何から手を付けるべきかと悩むが
 一先ずChef勉強ついでにPHPの開発環境も作成しようかと・・・。
 
 
-・仮想環境での環境構築勉強　VirtualBoxで作成  
-・Chefもついでに勉強  
-・PHPもついでに勉強  
+*仮想環境での環境構築勉強　VirtualBoxで作成  
+*Chefもついでに勉強  
+*PHPもついでに勉強  
 
 
 VirtualBox、Vagrantは前にインストールしてるので、
 仮想環境作成から。
 
-# Vagrantの設定
+## Vagrantの設定
 
 コマンドは下記
 
+```
 vagrant init phpms https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box
+```
 
 OS何がいいかわかんないからCentOS6.5で・・・。
 
-vagrant initではVagrantfileが作成される。
+`vagrant init`ではVagrantfileが作成される。
 
+##Boxの作成
 
-#Boxの作成
+vagrant up で立ち上げ  
 
-　vagrant up で立ち上げ  
+初回はOSダウンロードからなので、ちょっと待つ。  
 
-  初回はOSダウンロードからなので、ちょっと待つ。  
+##SSH接続
 
-#SSH接続
+ダウンロード出来たら、SSHで接続
 
- ダウンロード出来たら、SSHで接続
-
- vagrant ssh  
- 
+```
+vagrant ssh
 [vagrant@vagrant-centos65 ~]$ 
+```
 
 
 上記一先ず立ち上がったので、 SSH抜けて一旦停止
 
+```
 [vagrant@vagrant-centos65 ~]$ exit  
- vagrant halt  
+vagrant halt  
+```
 
 眠いので明日以降に続きを・・・。
 
  昨日の続き・・・
 
-# Chef Soloのインストール
+## Chef Soloのインストール
 
+```
 curl -L https://www.opscode.com/chef/install.sh | sudo bash
+```
  
 結構時間かかる・・・。
+```
 [vagrant@vagrant-centos65 ~]$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
 
 ・・・
 
 Thank you for installing Chef!
+```
 
 こうなればOKだが、ネットサーフィンしてたらChef-soloは時代遅れとここで気づく・・・。
 
