@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | 30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-02-23T22:55:17+09:00</updated>
+  <updated>2015-02-23T22:59:03+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -24,13 +24,13 @@
 
 <p>最近はEclipseのシェアは減少傾向でIntelliJ IDEAのシェアが増加傾向ということを聞いたので、</p>
 
-<p>多分今後も使うので、インストールします。</p>
+<p>インストールしてみます。</p>
 
 <p><a href="https://www.jetbrains.com/idea/download/">ダウンロードページ</a></p>
 
-<p>Ultimate EditionとCommunity Editionの２つがりますが、</p>
+<p>Ultimate EditionとCommunity Editionの２つありますが、</p>
 
-<p>今回はFreeのCommunity Editionを選択してダウンロード対象はOS X</p>
+<p>今回はFreeのCommunity Editionを選択してダウンロード ※対象はOS X</p>
 
 <p>ダウンロードが完了したら<strong>.dmg パッケージ</strong>を開いて<strong>IntelliJ IDEA</strong>をアプリケーションフォルダにドラッグ&amp;ドロップ</p>
 
@@ -42,8 +42,9 @@
 
 <p>JDKはすでにインストール済みだったので、画面でjavaプロジェクトを選択して右上のNewボタンを押下し、</p>
 
-<p>＋JDKを押下して自分でjava_homeを設定。
-ちなみにjava_homeは下記で確認</p>
+<p>＋JDKを押下して自分でjava_homeを設定。</p>
+
+<p>ちなみにjava_homeはOS Xの場合は下記で確認</p>
 
 <pre><code>/usr/libexec/java_home -V
 </code></pre>
