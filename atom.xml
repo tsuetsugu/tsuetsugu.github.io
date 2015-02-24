@@ -4,7 +4,7 @@
   <title><![CDATA[30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-02-23T22:59:03+09:00</updated>
+  <updated>2015-02-24T23:28:54+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,37 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[勉強会に参加してみた]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting/"/>
+    <updated>2015-02-24T22:58:31+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting</id>
+    <content type="html"><![CDATA[<p>外の世界で情報収集と人脈構築も必要だということで、</p>
+
+<p>後輩に教えてもらい今日は<strong>ヒカラボ</strong>のイベントに参加してきました。</p>
+
+<p>今回は負荷試験に関する内容でした。</p>
+
+<p>話を聞いていて、ん？という言葉が結構あったので、知識不足だなと実感。</p>
+
+<p>ほとんど触りの話なので、すぐに活かせたりするものではないですが、</p>
+
+<p>段取りや意識することなど学べたので、勉強になりました。</p>
+
+<p>振り返ると自分の現場とかでも負荷試験やパフォーマンスチューニングとかやってたなぁ・・・。</p>
+
+<p>SAPはパッケージだけあって、分析ツールはしっかりしており、色々と分析をしていたので</p>
+
+<p>意外と活きる経験してきたのかなぁとちょっと思いました。</p>
+
+<p>全然関係ないですが、勉強会を積極的に開催している会社は</p>
+
+<p>オフィスがスタイリッシュで美人の女性が沢山いますね。</p>
+
+<p>実力がついたらスタイリッシュな環境で仕事もしてみたいものです。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Intellij IDEAをインストールしてみた]]></title>
