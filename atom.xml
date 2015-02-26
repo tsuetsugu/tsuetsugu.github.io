@@ -4,7 +4,7 @@
   <title><![CDATA[30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-02-24T23:28:54+09:00</updated>
+  <updated>2015-02-26T21:55:12+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -14,7 +14,7 @@
 
   
   <entry>
-    <title type="html"><![CDATA[勉強会に参加してみた]]></title>
+    <title type="html"><![CDATA[IT勉強会に参加してきた]]></title>
     <link href="http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting/"/>
     <updated>2015-02-24T22:58:31+09:00</updated>
     <id>http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting</id>
@@ -22,19 +22,96 @@
 
 <p>後輩に教えてもらい今日は<strong>ヒカラボ</strong>のイベントに参加してきました。</p>
 
-<p>今回は負荷試験に関する内容でした。</p>
+<p>今回は負荷試験に関する下記内容でした。</p>
 
-<p>話を聞いていて、ん？という言葉が結構あったので、知識不足だなと実感。</p>
+<hr />
+
+<h2>登壇者</h2>
+
+<p>株式会社ゆめみ
+仲川 樽八さん</p>
+
+<h2>負荷試験の順序</h2>
+
+<ul>
+<li>静的ファイルへのリクエスト</li>
+<li>DBアクセスのないロジックへのリクエスト</li>
+<li>DBアクセス(参照)が発生するロジックへのリクエスト</li>
+<li>DBアクセス(更新)が発生するロジックへのリクエスト</li>
+</ul>
+
+
+<p>スケールアップ/スケールアウトをすることでスループットが変動するかの確認</p>
+
+<blockquote><p>-> しないのであれば設計が悪い</p></blockquote>
+
+<p>シナリオ試験での確認</p>
+
+<blockquote><p>-> jmeter, gatlingが主流っぽい。</p></blockquote>
+
+<p>ポートの不足？</p>
+
+<blockquote><p>-> CentOSの場合<code>/etc/sysctl.conf</code>にTCP接続で使うポート番号が定義されてる。</p></blockquote>
+
+<p>攻撃サーバを複数にする</p>
+
+<blockquote><p>-> クラウド上でクラスタを組んで攻撃する</p></blockquote>
+
+<p>単体試験レベルの段階からやりましょう。</p>
+
+<p>攻撃側とされる側でネットワークをまたいだ試験はやめましょう。(別リージョンとか。)<br/>
+ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるから片方にしか負荷がいかないらしい。</p>
+
+<p>静的コンテンツはクラウドサービスに乗せて負荷試験から逃げる</p>
+
+<h2>負荷の原因</h2>
+
+<p>コネクションプール</p>
+
+<blockquote><p>-> クラウドだとコネクション時の3WayHandShakeがよく落ちるらしい</p></blockquote>
+
+<p>ORMがアホみたいにクエリを投げてる</p>
+
+<p>キャッシュがうまく使えてない</p>
+
+<blockquote><p>-> New Relic使えば見れるからOK</p></blockquote>
+
+<h2>ツール</h2>
+
+<ul>
+<li>ストレス試験</li>
+<li>ApacheBench</li>
+<li>Jmeter</li>
+<li><p>Gatling</p></li>
+<li><p>プロファイル</p></li>
+<li>XHProf<br/>
+ -> 実ソースに手を入れなきゃいけない<br/>
+ -> 開発環境と本番環境で動作が変わる仕組みが必要<br/>
+ -> index.phpだけだからなんとかなるか？</li>
+<li>Graphviz</li>
+<li>New Relic</li>
+</ul>
+
+
+<hr />
+
+<h3>感想</h3>
+
+<p>話を聞いていて、CDN、ELB、DNSキャッシュなど、ん？という言葉が結構あったので、知識不足だなと実感。</p>
 
 <p>ほとんど触りの話なので、すぐに活かせたりするものではないですが、</p>
 
-<p>段取りや意識することなど学べたので、勉強になりました。</p>
+<p>試験をするにあたっての段取りや意識することなど学べたので、勉強になりました。</p>
+
+<p>例えば、いきなり全部のシナリオからしないとか、原因が特定出来ないテストをしないとか。</p>
 
 <p>振り返ると自分の現場とかでも負荷試験やパフォーマンスチューニングとかやってたなぁ・・・。</p>
 
 <p>SAPはパッケージだけあって、分析ツールはしっかりしており、色々と分析をしていたので</p>
 
 <p>意外と活きる経験してきたのかなぁとちょっと思いました。</p>
+
+<p>もっと日常から学んだことを意識していくことが大切ですね。</p>
 
 <p>全然関係ないですが、勉強会を積極的に開催している会社は</p>
 
