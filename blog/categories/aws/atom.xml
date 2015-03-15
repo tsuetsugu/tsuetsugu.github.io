@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Aws | 30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/aws/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-02-26T21:55:12+09:00</updated>
+  <updated>2015-03-15T21:23:23+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -15,14 +15,14 @@
   
   <entry>
     <title type="html"><![CDATA[IT勉強会に参加してきた]]></title>
-    <link href="http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting/"/>
-    <updated>2015-02-24T22:58:31+09:00</updated>
-    <id>http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting</id>
+    <link href="http://tsuetsugu.github.io/blog/2015/02/25/join-study-meeting/"/>
+    <updated>2015-02-25T07:58:31+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/02/25/join-study-meeting</id>
     <content type="html"><![CDATA[<p>外の世界で情報収集と人脈構築も必要だということで、</p>
 
 <p>後輩に教えてもらい今日は<strong>ヒカラボ</strong>のイベントに参加してきました。</p>
 
-<p>今回は負荷試験に関する下記内容でした。</p>
+<p>今回は負荷試験に関する内容でした。</p>
 
 <hr />
 
@@ -43,19 +43,11 @@
 
 <p>スケールアップ/スケールアウトをすることでスループットが変動するかの確認</p>
 
-<blockquote><p>-> しないのであれば設計が悪い</p></blockquote>
+<p>最初の段階で最大のスループットを算出しておくことが重要</p>
 
 <p>シナリオ試験での確認</p>
 
-<blockquote><p>-> jmeter, gatlingが主流っぽい。</p></blockquote>
-
-<p>ポートの不足？</p>
-
-<blockquote><p>-> CentOSの場合<code>/etc/sysctl.conf</code>にTCP接続で使うポート番号が定義されてる。</p></blockquote>
-
 <p>攻撃サーバを複数にする</p>
-
-<blockquote><p>-> クラウド上でクラスタを組んで攻撃する</p></blockquote>
 
 <p>単体試験レベルの段階からやりましょう。</p>
 
@@ -68,13 +60,7 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
 
 <p>コネクションプール</p>
 
-<blockquote><p>-> クラウドだとコネクション時の3WayHandShakeがよく落ちるらしい</p></blockquote>
-
-<p>ORMがアホみたいにクエリを投げてる</p>
-
 <p>キャッシュがうまく使えてない</p>
-
-<blockquote><p>-> New Relic使えば見れるからOK</p></blockquote>
 
 <h2>ツール</h2>
 
@@ -84,14 +70,13 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
 <li>Jmeter</li>
 <li><p>Gatling</p></li>
 <li><p>プロファイル</p></li>
-<li>XHProf<br/>
- -> 実ソースに手を入れなきゃいけない<br/>
- -> 開発環境と本番環境で動作が変わる仕組みが必要<br/>
- -> index.phpだけだからなんとかなるか？</li>
+<li>XHProf</li>
 <li>Graphviz</li>
 <li>New Relic</li>
 </ul>
 
+
+<p>負荷試験用のツールは色々あるんだなと知ったので、時間があれば調べてみようと思います。</p>
 
 <hr />
 

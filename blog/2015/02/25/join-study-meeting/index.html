@@ -14,14 +14,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting">
+  <link rel="canonical" href="http://tsuetsugu.github.io/blog/2015/02/25/join-study-meeting">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="30歳前半から始めるモダンなエンジニアへの転身の足跡" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting">
+  <meta property="og:url" content="http://tsuetsugu.github.io/blog/2015/02/25/join-study-meeting">
   <meta property="og:title" content="IT勉強会に参加してきた - 30歳前半から始めるモダンなエンジニアへの転身の足跡">
   
 
@@ -112,7 +112,7 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-24T22:58:31+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-25T07:58:31+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
@@ -129,7 +129,7 @@
 
 <p>後輩に教えてもらい今日は<strong>ヒカラボ</strong>のイベントに参加してきました。</p>
 
-<p>今回は負荷試験に関する下記内容でした。</p>
+<p>今回は負荷試験に関する内容でした。</p>
 
 <hr />
 
@@ -150,19 +150,11 @@
 
 <p>スケールアップ/スケールアウトをすることでスループットが変動するかの確認</p>
 
-<blockquote><p>-> しないのであれば設計が悪い</p></blockquote>
+<p>最初の段階で最大のスループットを算出しておくことが重要</p>
 
 <p>シナリオ試験での確認</p>
 
-<blockquote><p>-> jmeter, gatlingが主流っぽい。</p></blockquote>
-
-<p>ポートの不足？</p>
-
-<blockquote><p>-> CentOSの場合<code>/etc/sysctl.conf</code>にTCP接続で使うポート番号が定義されてる。</p></blockquote>
-
 <p>攻撃サーバを複数にする</p>
-
-<blockquote><p>-> クラウド上でクラスタを組んで攻撃する</p></blockquote>
 
 <p>単体試験レベルの段階からやりましょう。</p>
 
@@ -175,13 +167,7 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
 
 <p>コネクションプール</p>
 
-<blockquote><p>-> クラウドだとコネクション時の3WayHandShakeがよく落ちるらしい</p></blockquote>
-
-<p>ORMがアホみたいにクエリを投げてる</p>
-
 <p>キャッシュがうまく使えてない</p>
-
-<blockquote><p>-> New Relic使えば見れるからOK</p></blockquote>
 
 <h2>ツール</h2>
 
@@ -191,14 +177,13 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
 <li>Jmeter</li>
 <li><p>Gatling</p></li>
 <li><p>プロファイル</p></li>
-<li>XHProf<br/>
- -> 実ソースに手を入れなきゃいけない<br/>
- -> 開発環境と本番環境で動作が変わる仕組みが必要<br/>
- -> index.phpだけだからなんとかなるか？</li>
+<li>XHProf</li>
 <li>Graphviz</li>
 <li>New Relic</li>
 </ul>
 
+
+<p>負荷試験用のツールは色々あるんだなと知ったので、時間があれば調べてみようと思います。</p>
 
 <hr />
 
@@ -248,7 +233,7 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-24T22:58:31+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-02-25T07:58:31+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
@@ -263,7 +248,7 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting/" data-via="" data-counturl="http://tsuetsugu.github.io/blog/2015/02/24/join-study-meeting/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tsuetsugu.github.io/blog/2015/02/25/join-study-meeting/" data-via="" data-counturl="http://tsuetsugu.github.io/blog/2015/02/25/join-study-meeting/" >Tweet</a>
   
   
   
@@ -275,6 +260,8 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
             
             <li class="previous"><a href="/blog/2015/02/23/install-intellij-idea/" title="Previous Post: Intellij IDEAをインストールしてみた">&laquo; Intellij IDEAをインストールしてみた</a></li>
             
+            
+            <li class="next"><a href="/blog/2015/03/15/learn-golang/" title="Next Post: Golang勉強会に行ってきました">Golang勉強会に行ってきました &raquo;</a></li>
             
           </ul>
         
@@ -293,15 +280,15 @@ ELBもリージョンをまたいじゃダメ。DNSキャッシュがあるか�
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item active" href="/blog/2015/02/24/join-study-meeting/">IT勉強会に参加してきた</a>
+    <a class="list-group-item " href="/blog/2015/03/15/learn-golang/">Golang勉強会に行ってきました</a>
+    
+    <a class="list-group-item active" href="/blog/2015/02/25/join-study-meeting/">IT勉強会に参加してきた</a>
     
     <a class="list-group-item " href="/blog/2015/02/23/install-intellij-idea/">Intellij IDEAをインストールしてみた</a>
     
     <a class="list-group-item " href="/blog/2015/02/13/setting-custom-domein/">GithubPages独自ドメイン設定</a>
     
     <a class="list-group-item " href="/blog/2015/02/05/goal-for-february/">2月の目標</a>
-    
-    <a class="list-group-item " href="/blog/2015/01/25/learn-html-css/">HTML/CSSの基本を勉強</a>
     
   </div>
 </section>

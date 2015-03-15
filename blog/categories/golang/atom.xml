@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Golang | 30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
+  <link href="http://tsuetsugu.github.io/blog/categories/golang/atom.xml" rel="self"/>
+  <link href="http://tsuetsugu.github.io/"/>
+  <updated>2015-03-15T21:23:23+09:00</updated>
+  <id>http://tsuetsugu.github.io/</id>
+  <author>
+    <name><![CDATA[Toshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Golang勉強会に行ってきました]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/03/15/learn-golang/"/>
+    <updated>2015-03-15T21:15:14+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/03/15/learn-golang</id>
+    <content type="html"><![CDATA[<p>だいぶ時間経ちましたが先日行ってきた勉強会の感想です。</p>
+
+<h3>Goとリレーショナルデータベース</h3>
+
+<p>GolangでSQLを使用してDB操作をする方法として以下の３つを使用する</p>
+
+<ul>
+<li>直接SQLを書く</li>
+<li>クエリービルダー</li>
+<li>ORM</li>
+</ul>
+
+
+<p>どれも一長一短があり、決定的な方法は今のところないとのことでした。</p>
+
+<h3>Go学んだ方法</h3>
+
+<p>一番私が知りたかったのは、この辺。みんなどうやって勉強しているのかと。。。</p>
+
+<p><a href="http://go-tour-jp.appspot.com">A Tour of Go</a>を使用して基本構文を理解したそうです。</p>
+
+<p>Goについては興味があったものの、何も調べていない状態だったので、</p>
+
+<p>こんなサイトがあったんだと初めて知りました。</p>
+
+<p>その他にも下記のことをしながら覚えて行ったそうです。</p>
+
+<ul>
+<li>他言語ツールをGoに翻訳</li>
+<li>Goの基本パッケージを参考にツール作成(fmtなど)</li>
+</ul>
+
+
+<h3>　最後に</h3>
+
+<p>どんな言語であれ、集中してやれば使いこなせるレベルまで達することができるのだなぁと思った。</p>
+
+<p>どれだけ興味を持って持続的に行えるかが鍵だと思うので、今後も勉強会に参加して刺激をもらいつつ</p>
+
+<p>知識を得てアウトプットをしていきたいと思います。</p>
+]]></content>
+  </entry>
+  
+</feed>
