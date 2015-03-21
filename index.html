@@ -116,6 +116,114 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-21T19:48:20+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015/03/21/learn-oauth/" itemprop="url">３月に参加したPython勉強会について</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>今回参加した勉強会のテーマはPython OAuthを使ってみよう！です。</p>
+
+<p>OAuthの仕組みを知りながら認証機能の実装方法を学ぶ内容でした。</p>
+
+<p>実装言語はPythonになり、Virtualenv、Django、herokuを使用します。</p>
+
+<hr />
+
+<h3>OAuthとは</h3>
+
+<p>OAuth承認のフレームワークです。</p>
+
+<p>なんだそれ？という感じですがこのフレームワークを使用して認証してる</p>
+
+<p>サービスは色々とありました。</p>
+
+<p>OAuthを使っているサービスはDoorkeeperやConnpassなどでみかける</p>
+
+<p>Facebookでログインやtwitterでログインなどのボタンで表示される下記のようなページになります。</p>
+
+<p><img src="/images/oAuth_login.png" width="640" height="480"></p>
+
+<p>OAuthを理解することで認証方法を利用してログインページの作成方法を理解出来るようになります。</p>
+
+<hr />
+
+<h2>登場人物</h2>
+
+<ul>
+<li>リソースオーナー : リソースの持ち主(自分)</li>
+<li>リソースサーバー : リソースを預かっているサーバー(facebook,twwiter)</li>
+<li>クライアント     : 使用したいアプリケーション側(doorkeeper,Connpass)</li>
+<li>承認サーバー : 権利を承認するサーバー(facebook,twwiter)</li>
+</ul>
+
+
+<hr />
+
+<h2>使用するメリット</h2>
+
+<ul>
+<li><p>リソースオーナー</p>
+
+<ul>
+<li>自分の認証用パスワードの公開が不要(ユーザ認証情報の漏洩防止)</li>
+<li>同じ情報をサービス毎に入力する手間の削減</li>
+</ul>
+</li>
+<li><p>クライアント</p>
+
+<ul>
+<li>他のサービスのリソースを容易に利用可能</li>
+<li>自分のサーバーで管理する個人情報の削減</li>
+<li>ユーザーエクスペリエンスの向上</li>
+</ul>
+</li>
+<li><p>その他</p>
+
+<ul>
+<li>標準化が進んでおり、開発が容易</li>
+</ul>
+</li>
+</ul>
+
+
+<hr />
+
+<p>仕組みさえ理解できれば、ログイン認証の選択肢としてありですね。</p>
+
+<p>勉強会の内容は実際Pythonで作成するところまでなので、引き続き</p>
+
+<p>別記事で環境作成から作成するまでを書いていければと思います。。。</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-03-15T21:15:14+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -1180,55 +1288,11 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
 
         </article>
       
-      
-        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
-          
-  <header class="page-header">
-    
-      <p class="meta text-muted text-uppercase">
-        
-
-
-
-
-
-
-
-
-
-
-
-
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-25T22:53:06+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
-        
-      </p>
-    
-    
-      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2014/12/25/begin-octopress-on-github-pages/" itemprop="url">OctpressでBlogを始めてみた</a></h2>
-    
-  </header>
-
-
-  <div class="entry-content clearfix" itemprop="articleBody description"><p>なんもしないと勉強にならないということで</p>
-
-<p>アウトプットも兼ねてBlogを開始。</p>
-
-<p>テーマとかもいじりたいが、
-そもそもMarkdownの記述もわからないとか
-ホント微妙なエンジニアだなと思いながら、
-「脱ポンコツ」を目指してがんばろう。。。</p>
-</div>
-  
-  
-
-
-        </article>
-      
     </div>
 
     <ul class="pager">
       
-        <li class="previous disabled"><a href="#">&larr;&nbsp;Older</a></li>
+        <li class="previous"><a href="/posts/2">&larr;&nbsp;Older</a></li>
       
       <li><a href="/blog/archives">Blog Archives</a></li>
       
@@ -1247,6 +1311,8 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015/03/21/learn-oauth/">３月に参加したPython勉強会について</a>
+    
     <a class="list-group-item " href="/blog/2015/03/15/learn-golang/">Golang勉強会に行ってきました</a>
     
     <a class="list-group-item " href="/blog/2015/02/25/join-study-meeting/">IT勉強会に参加してきた</a>
@@ -1254,8 +1320,6 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
     <a class="list-group-item " href="/blog/2015/02/23/install-intellij-idea/">Intellij IDEAをインストールしてみた</a>
     
     <a class="list-group-item " href="/blog/2015/02/13/setting-custom-domein/">GithubPages独自ドメイン設定</a>
-    
-    <a class="list-group-item " href="/blog/2015/02/05/goal-for-february/">2月の目標</a>
     
   </div>
 </section>

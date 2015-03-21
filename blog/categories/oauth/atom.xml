@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Oauth | 30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
+  <link href="http://tsuetsugu.github.io/blog/categories/oauth/atom.xml" rel="self"/>
+  <link href="http://tsuetsugu.github.io/"/>
+  <updated>2015-03-21T11:17:50+09:00</updated>
+  <id>http://tsuetsugu.github.io/</id>
+  <author>
+    <name><![CDATA[Toshi]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[３月に参加したPython勉強会について]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/03/21/learn-oauth/"/>
+    <updated>2015-03-21T19:48:20+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/03/21/learn-oauth</id>
+    <content type="html"><![CDATA[<p>今回参加した勉強会のテーマはPython OAuthを使ってみよう！です。</p>
+
+<p>OAuthの仕組みを知りながら認証機能の実装方法を学ぶ内容でした。</p>
+
+<p>実装言語はPythonになり、Virtualenv、Django、herokuを使用します。</p>
+
+<hr />
+
+<h3>OAuthとは</h3>
+
+<p>OAuth承認のフレームワークです。</p>
+
+<p>なんだそれ？という感じですがこのフレームワークを使用して認証してる</p>
+
+<p>サービスは色々とありました。</p>
+
+<p>OAuthを使っているサービスはDoorkeeperやConnpassなどでみかける</p>
+
+<p>Facebookでログインやtwitterでログインなどのボタンで表示される下記のようなページになります。</p>
+
+<p><img src="/images/oAuth_login.png" width="640" height="480"></p>
+
+<p>OAuthを理解することで認証方法を利用してログインページの作成方法を理解出来るようになります。</p>
+
+<hr />
+
+<h2>登場人物</h2>
+
+<ul>
+<li>リソースオーナー : リソースの持ち主(自分)</li>
+<li>リソースサーバー : リソースを預かっているサーバー(facebook,twwiter)</li>
+<li>クライアント     : 使用したいアプリケーション側(doorkeeper,Connpass)</li>
+<li>承認サーバー : 権利を承認するサーバー(facebook,twwiter)</li>
+</ul>
+
+
+<hr />
+
+<h2>使用するメリット</h2>
+
+<ul>
+<li><p>リソースオーナー</p>
+
+<ul>
+<li>自分の認証用パスワードの公開が不要(ユーザ認証情報の漏洩防止)</li>
+<li>同じ情報をサービス毎に入力する手間の削減</li>
+</ul>
+</li>
+<li><p>クライアント</p>
+
+<ul>
+<li>他のサービスのリソースを容易に利用可能</li>
+<li>自分のサーバーで管理する個人情報の削減</li>
+<li>ユーザーエクスペリエンスの向上</li>
+</ul>
+</li>
+<li><p>その他</p>
+
+<ul>
+<li>標準化が進んでおり、開発が容易</li>
+</ul>
+</li>
+</ul>
+
+
+<hr />
+
+<p>仕組みさえ理解できれば、ログイン認証の選択肢としてありですね。</p>
+
+<p>勉強会の内容は実際Pythonで作成するところまでなので、引き続き</p>
+
+<p>別記事で環境作成から作成するまでを書いていければと思います。。。</p>
+]]></content>
+  </entry>
+  
+</feed>
