@@ -116,6 +116,123 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-11T00:12:05+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015/01/11/learn-vagrant-and-chef/" itemprop="url">勉強がてら仮想環境をちゃんと作ってみる</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>知らないこともたくさんありすぎて何から手を付けるべきかと悩むが
+一先ずChef勉強ついでにPHPの開発環境も作成しようかと・・・。</p>
+
+<p><em>仮想環境での環境構築勉強　VirtualBoxで作成<br/>
+</em>Chefもついでに勉強<br/>
+*PHPもついでに勉強</p>
+
+<p>VirtualBox、Vagrantは前にインストールしてるので、
+仮想環境作成から。</p>
+
+<h2>Vagrantの設定</h2>
+
+<p>コマンドは下記</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant init phpms https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box</span></code></pre></td></tr></table></div></figure>
+
+
+<p>OS何がいいかわかんないからCentOS6.5で・・・。</p>
+
+<p><code>vagrant init</code>ではVagrantfileが作成される。</p>
+
+<h2>Boxの作成</h2>
+
+<p>vagrant up で立ち上げ</p>
+
+<p>初回はOSダウンロードからなので、ちょっと待つ。</p>
+
+<h2>SSH接続</h2>
+
+<p>ダウンロード出来たら、SSHで接続</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant ssh
+</span><span class='line'>[vagrant@vagrant-centos65 ~]$ </span></code></pre></td></tr></table></div></figure>
+
+
+<p>上記一先ず立ち上がったので、 SSH抜けて一旦停止</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ exit  
+</span><span class='line'>vagrant halt  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>眠いので明日以降に続きを・・・。</p>
+
+<p> 昨日の続き・・・</p>
+
+<h2>Chef Soloのインストール</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://www.opscode.com/chef/install.sh | sudo bash</span></code></pre></td></tr></table></div></figure>
+
+
+<p>結構時間かかる・・・。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
+</span><span class='line'>
+</span><span class='line'>・・・
+</span><span class='line'>
+</span><span class='line'>Thank you for installing Chef!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>こうなればOKだが、ネットサーフィンしてたらChef-soloは時代遅れとここで気づく・・・。</p>
+
+<p>今主流はChef Client だそうで、本はChef-soloだったので、こりゃだめだということでAnsibleに乗り換え・・・。</p>
+
+<p>はぁ、情報弱者すぎるポンコツ・・・。</p>
+
+<p>ついでだから仮想環境捨てる練習で・・・・</p>
+
+<p>vagrant destroy</p>
+
+<p>ということで最初からやり直し・・・続きはまた今度</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2014-12-25T22:53:06+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -164,6 +281,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015/05/09/participate-in-swy/">Start Up Weekend Yokohamaに参加してきました</a>
+    
     <a class="list-group-item " href="/blog/2015/03/21/learn-oauth/">３月に参加したPython勉強会について</a>
     
     <a class="list-group-item " href="/blog/2015/03/15/learn-golang/">Golang勉強会に行ってきました</a>
@@ -171,8 +290,6 @@
     <a class="list-group-item " href="/blog/2015/02/25/join-study-meeting/">IT勉強会に参加してきた</a>
     
     <a class="list-group-item " href="/blog/2015/02/23/install-intellij-idea/">Intellij IDEAをインストールしてみた</a>
-    
-    <a class="list-group-item " href="/blog/2015/02/13/setting-custom-domein/">GithubPages独自ドメイン設定</a>
     
   </div>
 </section>
