@@ -4,7 +4,7 @@
   <title><![CDATA[30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-05-10T20:30:41+09:00</updated>
+  <updated>2015-05-17T16:11:23+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,111 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[twitterのBotをPythonで作ってみる]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/05/17/make-twitter-bot/"/>
+    <updated>2015-05-17T15:51:00+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/05/17/make-twitter-bot</id>
+    <content type="html"><![CDATA[<p>週末に定期的に参加している勉強会<a href="http://projectsamurai.web.fc2.com/jikaiyokoku.htm">MPS</a>で開催場所の連絡を自動化する一環で</p>
+
+<p>何か面白いメッセージを通知して送れるといいねという話になったので、</p>
+
+<p>何か面白そうと思いその開発を行うことになりました。</p>
+
+<p>いずれは機械学習とかで気の利いた一言とかできたらいいなぁとかいうのもありますが、</p>
+
+<p>先ずはベイビーステップとして、Hello worldをつぶやくのをNode.jsとPythonで作ってみようと思います。</p>
+
+<p>最初は一先ずPython3で。</p>
+
+<h3>環境とか設定は以下を参考にさせて頂きました。</h3>
+
+<p><a href="http://qiita.com/kaki_k/items/e824cfcf089e75d43551">Python Django入門 (2) Mac編</a></p>
+
+<p><a href="http://webnaut.jp/develop/633.html">やってみると意外とカンタン！TwitterAPIを使ってつぶやきデータを取得してみた。</a></p>
+
+<p><a href="https://apps.twitter.com/">Twitter API登録</a></p>
+
+<p>色々設定がめんどいですが、参考サイト通りにやればいけました・・・。</p>
+
+<p>つぶやくだけならば、APIでのwebsiteやCallbackとかは適当で大丈夫でした。</p>
+
+<h3>開発用の仮想環境作成と起動</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>virtualenv -p python3 tweet
+</span><span class='line'>source tweet/bin/activate</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>仮想環境でつぶやくために必要なライブラリインストール</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pip install requests
+</span><span class='line'>pip install requests-oauthlib</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>コードは下記の通り</h3>
+
+<p>tweet.py</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>from requests_oauthlib import OAuth1Session
+</span><span class='line'>  
+</span><span class='line'>CK = ‘XXXXX’ # Consumer Key
+</span><span class='line'>CS = ‘XXXXX’ # Consumer Secret
+</span><span class='line'>AT = ‘XXXXX’  # Access Token
+</span><span class='line'>AS = ‘XXXXX’ # Accesss Token Secert
+</span><span class='line'>  
+</span><span class='line'>URL = "https://api.twitter.com/1.1/statuses/update.json"
+</span><span class='line'>  
+</span><span class='line'>def tweet(text):
+</span><span class='line'>    params = {"status": text}
+</span><span class='line'> 
+</span><span class='line'>    twitter = OAuth1Session(CK, CS, AT, AS)
+</span><span class='line'>    req = twitter.post(URL, params = params)
+</span><span class='line'> 
+</span><span class='line'>    return req.status_code
+</span><span class='line'> 
+</span><span class='line'>if __name__ == '__main__':
+</span><span class='line'>    print(tweet("Hello World!!!!”))</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Python2の場合は、print関数の書き方が異なるので、そこをいじればPython2でも動きます。</p>
+
+<h3>実行</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python tweet.py</span></code></pre></td></tr></table></div></figure>
+
+
+<p>画面は出てませんが、tweetしてくれました。</p>
+
+<p>手動実行の最初の段階なので、大したことはないですが・・・。</p>
+
+<p>今後はHerokuなどで定期的につぶやいたり、つぶやく内容を改良していきたいと思います。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Start Up Weekend Yokohamaに参加してきました]]></title>

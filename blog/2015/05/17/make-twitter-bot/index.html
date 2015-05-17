@@ -2,7 +2,7 @@
 <html class="no-js" lang="en">
 <head>
   <meta charset="utf-8">
-  <title>勉強がてら仮想環境をちゃんと作ってみる - 30歳前半から始めるモダンなエンジニアへの転身の足跡</title>
+  <title>twitterのBotをPythonで作ってみる - 30歳前半から始めるモダンなエンジニアへの転身の足跡</title>
   <meta name="author" content="Toshi">
 
   
@@ -14,15 +14,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://tsuetsugu.github.io/blog/2015/01/11/learn-vagrant-and-chef">
+  <link rel="canonical" href="http://tsuetsugu.github.io/blog/2015/05/17/make-twitter-bot">
   <link href="/favicon.png" type="image/png" rel="icon">
   <link href="/atom.xml" rel="alternate" title="30歳前半から始めるモダンなエンジニアへの転身の足跡" type="application/atom+xml">
 
   <!-- http://opengraphprotocol.org/ -->
   <meta name="twitter:card" content="summary_large_image">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="http://tsuetsugu.github.io/blog/2015/01/11/learn-vagrant-and-chef">
-  <meta property="og:title" content="勉強がてら仮想環境をちゃんと作ってみる - 30歳前半から始めるモダンなエンジニアへの転身の足跡">
+  <meta property="og:url" content="http://tsuetsugu.github.io/blog/2015/05/17/make-twitter-bot">
+  <meta property="og:title" content="twitterのBotをPythonで作ってみる - 30歳前半から始めるモダンなエンジニアへの転身の足跡">
   
 
   <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
@@ -112,100 +112,116 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-11T00:12:05+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-17T15:51:00+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
     
     
     <h1 class="entry-title" itemprop="name headline">
-        勉強がてら仮想環境をちゃんと作ってみる
+        twitterのBotをPythonで作ってみる
         
     </h1>
     
   </header>
 
 
-<div class="entry-content clearfix" itemprop="articleBody description"><p>知らないこともたくさんありすぎて何から手を付けるべきかと悩むが
-一先ずChef勉強ついでにPHPの開発環境も作成しようかと・・・。</p>
+<div class="entry-content clearfix" itemprop="articleBody description"><p>週末に定期的に参加している勉強会<a href="http://projectsamurai.web.fc2.com/jikaiyokoku.htm">MPS</a>で開催場所の連絡を自動化する一環で</p>
 
-<p><em>仮想環境での環境構築勉強　VirtualBoxで作成<br/>
-</em>Chefもついでに勉強<br/>
-*PHPもついでに勉強</p>
+<p>何か面白いメッセージを通知して送れるといいねという話になったので、</p>
 
-<p>VirtualBox、Vagrantは前にインストールしてるので、
-仮想環境作成から。</p>
+<p>何か面白そうと思いその開発を行うことになりました。</p>
 
-<h2>Vagrantの設定</h2>
+<p>いずれは機械学習とかで気の利いた一言とかできたらいいなぁとかいうのもありますが、</p>
 
-<p>コマンドは下記</p>
+<p>先ずはベイビーステップとして、Hello worldをつぶやくのをNode.jsとPythonで作ってみようと思います。</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant init phpms https://github.com/2creatives/vagrant-centos/releases/download/v6.5.3/centos65-x86_64-20140116.box</span></code></pre></td></tr></table></div></figure>
+<p>最初は一先ずPython3で。</p>
 
+<h3>環境とか設定は以下を参考にさせて頂きました。</h3>
 
-<p>OS何がいいかわかんないからCentOS6.5で・・・。</p>
+<p><a href="http://qiita.com/kaki_k/items/e824cfcf089e75d43551">Python Django入門 (2) Mac編</a></p>
 
-<p><code>vagrant init</code>ではVagrantfileが作成される。</p>
+<p><a href="http://webnaut.jp/develop/633.html">やってみると意外とカンタン！TwitterAPIを使ってつぶやきデータを取得してみた。</a></p>
 
-<h2>Boxの作成</h2>
+<p><a href="https://apps.twitter.com/">Twitter API登録</a></p>
 
-<p>vagrant up で立ち上げ</p>
+<p>色々設定がめんどいですが、参考サイト通りにやればいけました・・・。</p>
 
-<p>初回はOSダウンロードからなので、ちょっと待つ。</p>
+<p>つぶやくだけならば、APIでのwebsiteやCallbackとかは適当で大丈夫でした。</p>
 
-<h2>SSH接続</h2>
-
-<p>ダウンロード出来たら、SSHで接続</p>
+<h3>開発用の仮想環境作成と起動</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>vagrant ssh
-</span><span class='line'>[vagrant@vagrant-centos65 ~]$ </span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>virtualenv -p python3 tweet
+</span><span class='line'>source tweet/bin/activate</span></code></pre></td></tr></table></div></figure>
 
 
-<p>上記一先ず立ち上がったので、 SSH抜けて一旦停止</p>
+<h3>仮想環境でつぶやくために必要なライブラリインストール</h3>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ exit  
-</span><span class='line'>vagrant halt  </span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class=''><span class='line'>pip install requests
+</span><span class='line'>pip install requests-oauthlib</span></code></pre></td></tr></table></div></figure>
 
 
-<p>眠いので明日以降に続きを・・・。</p>
+<h3>コードは下記の通り</h3>
 
-<p> 昨日の続き・・・</p>
-
-<h2>Chef Soloのインストール</h2>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>curl -L https://www.opscode.com/chef/install.sh | sudo bash</span></code></pre></td></tr></table></div></figure>
-
-
-<p>結構時間かかる・・・。</p>
+<p>tweet.py</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@vagrant-centos65 ~]$ curl -L https://www.opscode.com/chef/install.sh | sudo bash
-</span><span class='line'>
-</span><span class='line'>・・・
-</span><span class='line'>
-</span><span class='line'>Thank you for installing Chef!</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>from requests_oauthlib import OAuth1Session
+</span><span class='line'>  
+</span><span class='line'>CK = ‘XXXXX’ # Consumer Key
+</span><span class='line'>CS = ‘XXXXX’ # Consumer Secret
+</span><span class='line'>AT = ‘XXXXX’  # Access Token
+</span><span class='line'>AS = ‘XXXXX’ # Accesss Token Secert
+</span><span class='line'>  
+</span><span class='line'>URL = "https://api.twitter.com/1.1/statuses/update.json"
+</span><span class='line'>  
+</span><span class='line'>def tweet(text):
+</span><span class='line'>    params = {"status": text}
+</span><span class='line'> 
+</span><span class='line'>    twitter = OAuth1Session(CK, CS, AT, AS)
+</span><span class='line'>    req = twitter.post(URL, params = params)
+</span><span class='line'> 
+</span><span class='line'>    return req.status_code
+</span><span class='line'> 
+</span><span class='line'>if __name__ == '__main__':
+</span><span class='line'>    print(tweet("Hello World!!!!”))</span></code></pre></td></tr></table></div></figure>
 
 
-<p>こうなればOKだが、ネットサーフィンしてたらChef-soloは時代遅れとここで気づく・・・。</p>
+<p>Python2の場合は、print関数の書き方が異なるので、そこをいじればPython2でも動きます。</p>
 
-<p>今主流はChef Client だそうで、本はChef-soloだったので、こりゃだめだということでAnsibleに乗り換え・・・。</p>
+<h3>実行</h3>
 
-<p>はぁ、情報弱者すぎるポンコツ・・・。</p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>python tweet.py</span></code></pre></td></tr></table></div></figure>
 
-<p>ついでだから仮想環境捨てる練習で・・・・</p>
 
-<p>vagrant destroy</p>
+<p>画面は出てませんが、tweetしてくれました。</p>
 
-<p>ということで最初からやり直し・・・続きはまた今度</p>
+<p>手動実行の最初の段階なので、大したことはないですが・・・。</p>
+
+<p>今後はHerokuなどで定期的につぶやいたり、つぶやく内容を改良していきたいと思います。</p>
 </div>
 
 
@@ -229,13 +245,13 @@
 
 
 
-<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-11T00:12:05+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-05-17T15:51:00+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
           
 
 <span class="glyphicon glyphicon-tags"></span>&nbsp;
 <span class="categories">
   
-    <a class='category' href='/blog/categories/chef/'>chef</a>, <a class='category' href='/blog/categories/php/'>php</a>, <a class='category' href='/blog/categories/vagrant/'>vagrant</a>, <a class='category' href='/blog/categories/virtual-environment/'>virtual environment</a>
+    <a class='category' href='/blog/categories/node-dot-js/'>node.js</a>, <a class='category' href='/blog/categories/python/'>python</a>, <a class='category' href='/blog/categories/twitter/'>twitter</a>
   
 </span>
 
@@ -244,7 +260,7 @@
         
           <div class="sharing">
   
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tsuetsugu.github.io/blog/2015/01/11/learn-vagrant-and-chef/" data-via="" data-counturl="http://tsuetsugu.github.io/blog/2015/01/11/learn-vagrant-and-chef/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tsuetsugu.github.io/blog/2015/05/17/make-twitter-bot/" data-via="" data-counturl="http://tsuetsugu.github.io/blog/2015/05/17/make-twitter-bot/" >Tweet</a>
   
   
   
@@ -254,10 +270,8 @@
         
           <ul class="meta text-muted pager">
             
-            <li class="previous"><a href="/blog/2014/12/25/begin-octopress-on-github-pages/" title="Previous Post: OctpressでBlogを始めてみた">&laquo; OctpressでBlogを始めてみた</a></li>
+            <li class="previous"><a href="/blog/2015/05/09/participate-in-swy/" title="Previous Post: Start up weekend Yokohamaに参加してきました">&laquo; Start up weekend Yokohamaに参加してきました</a></li>
             
-            
-            <li class="next"><a href="/blog/2015/01/13/make-environment-with-ansible/" title="Next Post: 環境構築Ansibleでやってみた">環境構築Ansibleでやってみた &raquo;</a></li>
             
           </ul>
         
@@ -276,7 +290,7 @@
   
   <div id="recent_posts" class="list-group">
     
-    <a class="list-group-item " href="/blog/2015/05/17/make-twitter-bot/">twitterのBotをPythonで作ってみる</a>
+    <a class="list-group-item active" href="/blog/2015/05/17/make-twitter-bot/">twitterのBotをPythonで作ってみる</a>
     
     <a class="list-group-item " href="/blog/2015/05/09/participate-in-swy/">Start Up Weekend Yokohamaに参加してきました</a>
     

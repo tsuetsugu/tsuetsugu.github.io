@@ -116,6 +116,392 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-13T23:49:25+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015/01/13/make-environment-with-ansible/" itemprop="url">環境構築Ansibleでやってみた</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>Chefは挫折してしまったので、Ansibleで再度環境構築を・・・。</p>
+
+<h2>Vagrantを使ってサーバー準備</h2>
+
+<h3>Vagrantfileを作成</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vagrant init chef/centos-6.5</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Vagrantfile編集</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'> # config.vm.box = "chef/centos-6.5" #コメントアウト
+</span><span class='line'>
+</span><span class='line'>  config.vm.define "web" do |node|  
+</span><span class='line'>    node.vm.box = "chef/centos-6.5"  
+</span><span class='line'>    node.vm.hostname = "web"  
+</span><span class='line'>    node.vm.network :private_network, ip: "192.168.59.34"  
+</span><span class='line'>  end</span></code></pre></td></tr></table></div></figure>
+
+
+<p>`</p>
+
+<h3>仮想環境立ち上げ</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Vagrant up</span></code></pre></td></tr></table></div></figure>
+
+
+<p>回線が微妙なので長い・・・。</p>
+
+<h2>鍵の作成</h2>
+
+<p>すでにあるんで、これでOK？</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>cat .ssh/id_rsa.pub | ssh vagrant@192.168.59.34 "cat &gt;&gt; .ssh/authorized_keys”
+</span><span class='line'>
+</span><span class='line'>echo "[web]" &gt; hosts
+</span><span class='line'>
+</span><span class='line'>echo "192.168.59.34" &gt; hosts
+</span><span class='line'>
+</span><span class='line'>ssh vagrant@192.168.59.34 ※パスワードはvagrant</span></code></pre></td></tr></table></div></figure>
+
+
+<p>一先ず繋がればOK・・・。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@web ~]$ </span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Ansibleの設定</h2>
+
+<h3>Ansibleを管理側にインストール</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>brew install unusable</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>Ansible疎通確認</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ansible -i hosts all -m ping
+</span><span class='line'>
+</span><span class='line'>ERROR: Unable to find an inventory file, specify one with -i ?</span></code></pre></td></tr></table></div></figure>
+
+
+<p>inventory fileを指定しろというエラー・・・。</p>
+
+<p>Ansibleはインベントリファイルに記載されたホストにしかアクセスしないので、
+インベントリファイルを編集しないといけないがそもそもどこに格納されてるんだろと思ったが
+さっき作ったhostsか？</p>
+
+<p>ということで、ホームディレクトリに移動して再度`</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ansible -i hosts all -m ping
+</span><span class='line'>
+</span><span class='line'>192.168.59.34 | FAILED =&gt; SSH encountered an unknown error during the connection. We recommend you re-run the command using -vvvv, which will enable SSH debugging output to help diagnose the issue</span></code></pre></td></tr></table></div></figure>
+
+
+<p>実行できたが違うエラー・・・。何だろと検索してるとSSHのコンフィグあたりが怪しいということで</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>vim ~/.ssh/config</span></code></pre></td></tr></table></div></figure>
+
+
+<h3>記述追加</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Host 192.168.59.34  
+</span><span class='line'>  HostName 192.168.59.34  
+</span><span class='line'>  IdentityFile ~/.ssh/id_rsa  
+</span><span class='line'>  User vagrant  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>設定後再実行すると・・・</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>192.168.59.34 | success &gt;&gt; {  
+</span><span class='line'>    "changed": false,   
+</span><span class='line'>    "ping": "pong"  
+</span><span class='line'>}  </span></code></pre></td></tr></table></div></figure>
+
+
+<p>成功したようだけど、この辺全然わからない・・・。
+一先ず先に進む・・・。</p>
+
+<h3>仮想環境側のPythonインストール確認</h3>
+
+<p>管理ホストは2.6が必要で、対象ホストは2.4でいいらしい。
+※但し、2.4の場合は依存ライブラリーが必要</p>
+
+<p>バージョン確認</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>[vagrant@web ~]$ python -V
+</span><span class='line'>Python 2.6.6</span></code></pre></td></tr></table></div></figure>
+
+
+<p>入ってるのでOK</p>
+
+<h2>Playbookの作成</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>$ vim playbook.yml</span></code></pre></td></tr></table></div></figure>
+
+
+<p>内容はこのサイトから<a href="http://liginc.co.jp/web/programming/server/129004">http://liginc.co.jp/web/programming/server/129004</a></p>
+
+<h3>playbook実行</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>suetsugutoshiyuki-no-MacBook-Pro:~ toshi$ ansible-playbook -i hosts playbook.yml
+</span><span class='line'>
+</span><span class='line'>PLAY [192.168.59.34] ********************************************************** 
+</span><span class='line'>
+</span><span class='line'>GATHERING FACTS *************************************************************** 
+</span><span class='line'>ok: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Install basepackage] *************************************************** 
+</span><span class='line'>changed: [192.168.59.34] =&gt; (item=wget,ntp,vim)
+</span><span class='line'>
+</span><span class='line'>TASK: [SELinux Disable] ******************************************************* 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Edit selinux config] *************************************************** 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [stop iptabes] ********************************************************** 
+</span><span class='line'>ok: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Install apache] ******************************************************** 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Install php] *********************************************************** 
+</span><span class='line'>changed: [192.168.59.34] =&gt; (item=php,php-devel,php-mbstring,php-mysql,php-gd)
+</span><span class='line'>
+</span><span class='line'>TASK: [Install mysql] ********************************************************* 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>NOTIFIED: [restart apache] **************************************************** 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>NOTIFIED: [mysql setup] ******************************************************* 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>NOTIFIED: [mysql set password] ************************************************ 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>PLAY RECAP ******************************************************************** 
+</span><span class='line'>192.168.59.34              : ok=11   changed=9    unreachable=0    failed=0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>うまくいってるぽいので、確認のため再実行</p>
+
+<p>※hostsは修正</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>PLAY [web] ******************************************************************** 
+</span><span class='line'>
+</span><span class='line'>GATHERING FACTS *************************************************************** 
+</span><span class='line'>ok: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Install basepackage] *************************************************** 
+</span><span class='line'>ok: [192.168.59.34] =&gt; (item=wget,ntp,vim)
+</span><span class='line'>
+</span><span class='line'>TASK: [SELinux Disable] ******************************************************* 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Edit selinux config] *************************************************** 
+</span><span class='line'>changed: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [stop iptabes] ********************************************************** 
+</span><span class='line'>ok: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Install apache] ******************************************************** 
+</span><span class='line'>ok: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>TASK: [Install php] *********************************************************** 
+</span><span class='line'>ok: [192.168.59.34] =&gt; (item=php,php-devel,php-mbstring,php-mysql,php-gd)
+</span><span class='line'>
+</span><span class='line'>TASK: [Install mysql] ********************************************************* 
+</span><span class='line'>ok: [192.168.59.34]
+</span><span class='line'>
+</span><span class='line'>PLAY RECAP ******************************************************************** 
+</span><span class='line'>192.168.59.34              : ok=8    changed=2    unreachable=0    failed=0</span></code></pre></td></tr></table></div></figure>
+
+
+<p>２回目は再度インストールはしないので早い。</p>
+
+<h3>Apacheの起動確認</h3>
+
+<p><a href="http://192.168.59.34/">http://192.168.59.34/</a></p>
+
+<p>Apacheの画面が出ればOK!</p>
+
+<h3>mysqlも確認</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>ssh vagrant@192.168.59.34
+</span><span class='line'>
+</span><span class='line'>[vagrant@web ~]$ mysql -u root -p
+</span><span class='line'>
+</span><span class='line'>Enter password: 
+</span><span class='line'>Welcome to the MySQL monitor.  Commands end with ; or \g.
+</span><span class='line'>Your MySQL connection id is 3
+</span><span class='line'>Server version: 5.1.73 Source distribution
+</span><span class='line'>
+</span><span class='line'>Copyright (c) 2000, 2013, Oracle and/or its affiliates. All rights reserved.
+</span><span class='line'>
+</span><span class='line'>Oracle is a registered trademark of Oracle Corporation and/or its
+</span><span class='line'>affiliates. Other names may be trademarks of their respective
+</span><span class='line'>owners.
+</span><span class='line'>
+</span><span class='line'>Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+</span><span class='line'>
+</span><span class='line'>mysql&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>出来た！！長かった・・・。</p>
+
+<p>Ansibleで環境構築は一先ず出来たぽいので、本格的な勉強をようやく始められます・・・。
+Ansibleもどう動いているかちゃんと理解したいので、ちょくちょく勉強はしていきます・・・。</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-11T00:12:05+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -281,6 +667,8 @@
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015/05/17/make-twitter-bot/">twitterのBotをPythonで作ってみる</a>
+    
     <a class="list-group-item " href="/blog/2015/05/09/participate-in-swy/">Start Up Weekend Yokohamaに参加してきました</a>
     
     <a class="list-group-item " href="/blog/2015/03/21/learn-oauth/">３月に参加したPython勉強会について</a>
@@ -288,8 +676,6 @@
     <a class="list-group-item " href="/blog/2015/03/15/learn-golang/">Golang勉強会に行ってきました</a>
     
     <a class="list-group-item " href="/blog/2015/02/25/join-study-meeting/">IT勉強会に参加してきた</a>
-    
-    <a class="list-group-item " href="/blog/2015/02/23/install-intellij-idea/">Intellij IDEAをインストールしてみた</a>
     
   </div>
 </section>
