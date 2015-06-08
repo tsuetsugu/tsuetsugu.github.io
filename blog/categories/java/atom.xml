@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Java | 30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/java/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-05-17T16:11:23+09:00</updated>
+  <updated>2015-06-08T22:02:54+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,88 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JSPのformに複数アクションを設定したい場合の対処法]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/06/08/java-training/"/>
+    <updated>2015-06-08T21:52:53+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/06/08/java-training</id>
+    <content type="html"><![CDATA[<p>新しい会社の研修で今更ながらjavaとstruts2を使ってブログサイトを作ったので</p>
+
+<p>そこで詰まったことを備忘録もかねて、自分が対処した方法を記載。</p>
+
+<p>今回はJSPのformに複数アクションを設定したい場合の対処方法。</p>
+
+<p>方法とか対処は多分いくらでもあると思いますが、</p>
+
+<p>今回のは検索しても意外とみつからなかったので。。。</p>
+
+<p>例えばフォームに入力された値を使いボタンによって</p>
+
+<p>飛ばすアクションを変えたい場合、フォームのアクションは一つしか設定出来ないので</p>
+
+<p>下記のような書き方では出来ません・・・。</p>
+
+<pre><code>&lt;s:form id=“loginId” action=“XXXX"&gt;
+    &lt;s:label value="ログインID："/&gt;
+    &lt;s:textfield cssClass="loginid" name="loginid" value="" id="loginid”/&gt;
+    &lt;s:label value="パスワード："/&gt;
+    &lt;s:password cssClass="password" name="password" value="" id="password”/&gt;
+    &lt;s:submit value=“ログイン”/&gt;
+    &lt;s:submit value="新規登録"/&gt;    
+&lt;/s:form&gt;
+</code></pre>
+
+<p>じゃあ、どうするかというと、javascriptで飛ばすアクションを制御します。</p>
+
+<p>javascriptは外に出すとかはおいておいて・・・、下記のような記述になります。</p>
+
+<p>&#8220;`</p>
+
+<script>
+function doLogin() {
+    var form = document.getElementById('loginId’);
+    form.action = "login”;
+    form.submit();
+}
+
+function addUser() {
+    var form = document.getElementById('loginId');
+    form.action = "addUser”;
+    form.submit();
+}
+</script>
+
+
+<p>&lt;s:form id=“loginId”>
+    &lt;s:label value=&ldquo;ログインID：&rdquo;/>
+    &lt;s:textfield cssClass=&ldquo;loginid&rdquo; name=&ldquo;loginid&rdquo; value=&ldquo;&rdquo; id=&ldquo;loginid”/>
+    &lt;s:label value=&#8221;パスワード：&rdquo;/>
+    &lt;s:password cssClass=&ldquo;password&rdquo; name=&ldquo;password&rdquo; value=&ldquo;&rdquo; id=&ldquo;password”/>
+&lt;/s:form></p>
+
+<p><input type="submit" value="ログイン" onClick="doLogin()"/>
+<input type="submit" value="新規登録" onClick="addUser()"/>
+&#8220;`</p>
+
+<p>あとはstruts.xmlかアクションクラスのアノテーションで制御をすれば遷移ができます。</p>
+
+<p>アノテーションの場合は、下記の記載になります。</p>
+
+<pre><code>@Action("/login”)
+public String login(){
+}
+
+@Action("/addUser”)
+public String addUser(){
+}
+</code></pre>
+
+<p>たぶんこんなことしなくても、もっと仕様の視点から回避する方法もあると思いますし</p>
+
+<p>やり方はもっとスマートにする方法もあると思いますが、参考までに・・・。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Intellij IDEAをインストールしてみた]]></title>

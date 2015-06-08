@@ -4,7 +4,7 @@
   <title><![CDATA[30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-05-17T16:11:23+09:00</updated>
+  <updated>2015-06-08T22:02:54+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,123 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[JSPのformに複数アクションを設定したい場合の対処法]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/06/08/java-training/"/>
+    <updated>2015-06-08T21:52:53+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/06/08/java-training</id>
+    <content type="html"><![CDATA[<p>新しい会社の研修で今更ながらjavaとstruts2を使ってブログサイトを作ったので</p>
+
+<p>そこで詰まったことを備忘録もかねて、自分が対処した方法を記載。</p>
+
+<p>今回はJSPのformに複数アクションを設定したい場合の対処方法。</p>
+
+<p>方法とか対処は多分いくらでもあると思いますが、</p>
+
+<p>今回のは検索しても意外とみつからなかったので。。。</p>
+
+<p>例えばフォームに入力された値を使いボタンによって</p>
+
+<p>飛ばすアクションを変えたい場合、フォームのアクションは一つしか設定出来ないので</p>
+
+<p>下記のような書き方では出来ません・・・。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;s:form id=“loginId” action=“XXXX"&gt;
+</span><span class='line'>  &lt;s:label value="ログインID："/&gt;
+</span><span class='line'>  &lt;s:textfield cssClass="loginid" name="loginid" value="" id="loginid”/&gt;
+</span><span class='line'>  &lt;s:label value="パスワード："/&gt;
+</span><span class='line'>  &lt;s:password cssClass="password" name="password" value="" id="password”/&gt;
+</span><span class='line'>  &lt;s:submit value=“ログイン”/&gt;
+</span><span class='line'>  &lt;s:submit value="新規登録"/&gt;  
+</span><span class='line'>&lt;/s:form&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>じゃあ、どうするかというと、javascriptで飛ばすアクションを制御します。</p>
+
+<p>javascriptは外に出すとかはおいておいて・・・、下記のような記述になります。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;script&gt;
+</span><span class='line'>function doLogin() {
+</span><span class='line'>  var form = document.getElementById('loginId’);
+</span><span class='line'>  form.action = "login”;
+</span><span class='line'>  form.submit();
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>function addUser() {
+</span><span class='line'>  var form = document.getElementById('loginId');
+</span><span class='line'>  form.action = "addUser”;
+</span><span class='line'>  form.submit();
+</span><span class='line'>}
+</span><span class='line'>&lt;/script&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;s:form id=“loginId”&gt;
+</span><span class='line'>  &lt;s:label value="ログインID："/&gt;
+</span><span class='line'>  &lt;s:textfield cssClass="loginid" name="loginid" value="" id="loginid”/&gt;
+</span><span class='line'>  &lt;s:label value="パスワード："/&gt;
+</span><span class='line'>  &lt;s:password cssClass="password" name="password" value="" id="password”/&gt;
+</span><span class='line'>&lt;/s:form&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;input type="submit" value="ログイン" onClick="doLogin()"/&gt;
+</span><span class='line'>&lt;input type="submit" value="新規登録" onClick="addUser()"/&gt;</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あとはstruts.xmlかアクションクラスのアノテーションで制御をすれば遷移ができます。</p>
+
+<p>アノテーションの場合は、下記の記載になります。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>@Action("/login”)
+</span><span class='line'>public String login(){
+</span><span class='line'>}
+</span><span class='line'>
+</span><span class='line'>@Action("/addUser”)
+</span><span class='line'>public String addUser(){
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>たぶんこんなことしなくても、もっと仕様の視点から回避する方法もあると思いますし</p>
+
+<p>やり方はもっとスマートにする方法もあると思いますが、参考までに・・・。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[twitterのBotをPythonで作ってみる]]></title>
