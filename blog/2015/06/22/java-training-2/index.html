@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Struts2でファイルアップロード後に画像を表示する方法 - 30歳前半から始めるモダンなエンジニアへの転身の足跡</title>
+  <meta name="author" content="Toshi">
+
+  
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://tsuetsugu.github.io/blog/2015/06/22/java-training-2">
+  <link href="/favicon.png" type="image/png" rel="icon">
+  <link href="/atom.xml" rel="alternate" title="30歳前半から始めるモダンなエンジニアへの転身の足跡" type="application/atom+xml">
+
+  <!-- http://opengraphprotocol.org/ -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="http://tsuetsugu.github.io/blog/2015/06/22/java-training-2">
+  <meta property="og:title" content="Struts2でファイルアップロード後に画像を表示する方法 - 30歳前半から始めるモダンなエンジニアへの転身の足跡">
+  
+
+  <script src="/javascripts/libs/jquery/jquery-2.0.3.min.js"></script>
+
+<link href="/assets/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/assets/bootstrap/dist/css/bootstrap-theme.min.css" rel="stylesheet" type="text/css">
+
+
+  
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+  <body   >
+    <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+    <div id="wrap">
+      <header role="banner">
+        <nav class="navbar navbar-default" role="navigation">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" title="toggle navbar" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">30歳前半から始めるモダンなエンジニアへの転身の足跡</a>
+        </div>
+
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a rel="index" href="/">Blog</a>
+                </li>
+                <li >
+                    <a href="/blog/archives">Archives</a>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                
+                    <li>
+                        <form class="search navbar-form navbar-right" action="https://www.google.com/search" method="GET">
+                            <input type="hidden" name="q" value="site:tsuetsugu.github.io">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="q" placeholder="Search">
+                            </div>
+                        </form>
+                    </li>
+                
+                <li>
+                    <a class="subscribe-rss" href="/atom.xml" title="subscribe via RSS">
+                        <span class="visible-xs">RSS</span>
+                        <img class="hidden-xs" src="/images/rss.png" alt="RSS">
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+      </header>
+      <div id="main" role="main" class="container">
+        <div id="content">
+          <div class="row">
+  <div class="page-content col-md-9" itemscope itemtype="http://schema.org/Blog">
+    <meta itemprop="name" content="30歳前半から始めるモダンなエンジニアへの転身の足跡" />
+    
+    <meta itemprop="url" content="http://tsuetsugu.github.io" />
+    <article class="hentry" role="article" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+      
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-22T22:41:36+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+    <h1 class="entry-title" itemprop="name headline">
+        Struts2でファイルアップロード後に画像を表示する方法
+        
+    </h1>
+    
+  </header>
+
+
+<div class="entry-content clearfix" itemprop="articleBody description"><p>研修ではまったこと第二弾として、画像アップロードについてのメモ書きです。</p>
+
+<p>自己紹介のページなどで自分の紹介画像をアップロードする場合、</p>
+
+<p>更新ボタンを押す前にどんな画像かを一回アップロードしてその画面で確認したいものです。</p>
+
+<p>その手順を探しても中々検索出来なかったので、自分のやった手順を紹介です。</p>
+
+<p>Struts2では画面とActionにgetter、setterを設定することで自動的にバインドされて一時ファイルも作成されるので</p>
+
+<p>楽チンですが、アクションが終わって画面で表示されるとアップロードの一時ファイルは消えてしまいます。</p>
+
+<p>なので、表示後に保存したり、別の画面で使用したい場合は、</p>
+
+<p>別のフォルダに一時ファイルを保存する必要があります。</p>
+
+<p>ただ後述していますが、コピーしたファイルなどはログアウト時に消さないと増え続けてしまうので注意です。</p>
+
+<h2>JSP側</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;img src="&lt;s:property value = "%{#session.uploadprofileimage.filepath}"/&gt;" width="193" height="130"/&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;s:form action="doUpload" method="post" enctype="multipart/form-data"&gt;
+</span><span class='line'>   &lt;s:file name="upload" label="File"/&gt;
+</span><span class='line'>   &lt;s:submit value="画像アップロード"/&gt;
+</span><span class='line'>&lt;/s:form&gt;  </span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Struts.xml</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;action name="doUpload" class="action.UploadAction"&gt; 
+</span><span class='line'>    &lt;result name="success"&gt;/profile.jsp&lt;/result&gt;
+</span><span class='line'>    &lt;result name="login"&gt;/login.jsp&lt;/result&gt;
+</span><span class='line'>&lt;/action&gt; </span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Action側</h2>
+
+<p>やりたいことはコンテキストパスの下にユーザ独自のフォルダを作成し</p>
+
+<p>一時ファイルをその下にコピーしています。</p>
+
+<p>ただ、ディレクトリを作ったりしているので、ここには記載していませんが</p>
+
+<p>ログアウトしたらディレクトリとファイルを消すという作業は要ります・・・。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class UploadAction{
+</span><span class='line'>    private File file; 
+</span><span class='line'>    private String contentType;
+</span><span class='line'>    private String filename;
+</span><span class='line'>
+</span><span class='line'>    public void setUpload(File file) {
+</span><span class='line'>        this.file = file;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public File getFile() {
+</span><span class='line'>        return file;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public void setUploadFileName(String filename) {
+</span><span class='line'>        this.filename = filename;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public String getFilename() {
+</span><span class='line'>        return filename;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public String getContentType() {
+</span><span class='line'>        return contentType;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public void setContentType(String contentType) {
+</span><span class='line'>        this.contentType = contentType;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public String execute() throws Exception {
+</span><span class='line'>
+</span><span class='line'>//  セッションのユーザ情報取得      
+</span><span class='line'>        User user = getCurrentUser();
+</span><span class='line'>
+</span><span class='line'>        String realPath = ServletActionContext.getServletContext().getRealPath("/" + user.getId()); 
+</span><span class='line'>             
+</span><span class='line'>        File mdir = new File(realPath);
+</span><span class='line'>        mdir.mkdir();
+</span><span class='line'>                  
+</span><span class='line'>        try {
+</span><span class='line'>                        
+</span><span class='line'>            File filePath = new File(mdir,filename);            
+</span><span class='line'>            FileUtils.copyFile(file,filePath);
+</span><span class='line'>            //セッションにパスを格納
+</span><span class='line'>　　　　img.setFile(filePath);
+</span><span class='line'>           
+</span><span class='line'>            // エラーがあった場合は、スタックトレースを出力
+</span><span class='line'>        } catch (Exception e) {
+</span><span class='line'>            e.printStackTrace();
+</span><span class='line'>            
+</span><span class='line'>        }
+</span><span class='line'>        return "success";
+</span><span class='line'>    }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今回の手順は一時ファイルをコピーしたり、ログアウト時に消したりとするので結構めんどいです。</p>
+
+<p>最終日に別の方法(BASE64)も試すことができなので、別途紹介したいと思います。</p>
+</div>
+
+
+      <footer>
+        <p class="meta text-muted">
+          
+  
+
+<span class="glyphicon glyphicon-user"></span> <span class="byline author vcard" itemprop="author" itemscope itemtype="http://schema.org/Person">Posted by <span class="fn" itemprop="name">Toshi</span></span>
+
+          
+
+
+
+
+
+
+
+
+
+
+
+
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-06-22T22:41:36+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+          
+
+<span class="glyphicon glyphicon-tags"></span>&nbsp;
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/java/'>java</a>, <a class='category' href='/blog/categories/struts2/'>struts2</a>
+  
+</span>
+
+
+        </p>
+        
+          <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://tsuetsugu.github.io/blog/2015/06/22/java-training-2/" data-via="" data-counturl="http://tsuetsugu.github.io/blog/2015/06/22/java-training-2/" >Tweet</a>
+  
+  
+  
+</div>
+
+        
+        
+          <ul class="meta text-muted pager">
+            
+            <li class="previous"><a href="/blog/2015/06/08/java-training/" title="Previous Post: JSPのformに複数アクションを設定したい場合の対処法">&laquo; JSPのformに複数アクションを設定したい場合の対処法</a></li>
+            
+            
+          </ul>
+        
+      </footer>
+    </article>
+    
+  </div>
+
+  
+  <aside class="sidebar col-md-3">
+    
+      <section class="panel panel-default">
+  <div class="panel-heading">
+    <h3 class="panel-title">Recent Posts</h3>
+  </div>
+  
+  <div id="recent_posts" class="list-group">
+    
+    <a class="list-group-item active" href="/blog/2015/06/22/java-training-2/">Struts2でファイルアップロード後に画像を表示する方法</a>
+    
+    <a class="list-group-item " href="/blog/2015/06/08/java-training/">JSPのformに複数アクションを設定したい場合の対処法</a>
+    
+    <a class="list-group-item " href="/blog/2015/05/17/make-twitter-bot/">twitterのBotをPythonで作ってみる</a>
+    
+    <a class="list-group-item " href="/blog/2015/05/09/participate-in-swy/">Start Up Weekend Yokohamaに参加してきました</a>
+    
+    <a class="list-group-item " href="/blog/2015/03/21/learn-oauth/">３月に参加したPython勉強会について</a>
+    
+  </div>
+</section>
+
+
+
+
+
+
+    
+  </aside>
+  
+</div>
+
+        </div>
+      </div>
+    </div>
+    <footer role="contentinfo"><div class="container">
+    <p class="text-muted credits">
+  Copyright &copy; 2015 - Toshi<br>
+  <small>
+      <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>,
+      <span class="credit">customized with <a href="https://github.com/kAworu/octostrap3">octostrap3</a></span>.
+  </small>
+</p>
+
+</div>
+</footer>
+    
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+<script src="/assets/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/javascripts/modernizr-2.0.js"></script>
+
+
+  </body>
+</html>

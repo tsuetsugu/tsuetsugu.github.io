@@ -4,7 +4,7 @@
   <title><![CDATA[30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-06-08T22:02:54+09:00</updated>
+  <updated>2015-06-22T22:48:30+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,183 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Struts2でファイルアップロード後に画像を表示する方法]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/06/22/java-training-2/"/>
+    <updated>2015-06-22T22:41:36+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/06/22/java-training-2</id>
+    <content type="html"><![CDATA[<p>研修ではまったこと第二弾として、画像アップロードについてのメモ書きです。</p>
+
+<p>自己紹介のページなどで自分の紹介画像をアップロードする場合、</p>
+
+<p>更新ボタンを押す前にどんな画像かを一回アップロードしてその画面で確認したいものです。</p>
+
+<p>その手順を探しても中々検索出来なかったので、自分のやった手順を紹介です。</p>
+
+<p>Struts2では画面とActionにgetter、setterを設定することで自動的にバインドされて一時ファイルも作成されるので</p>
+
+<p>楽チンですが、アクションが終わって画面で表示されるとアップロードの一時ファイルは消えてしまいます。</p>
+
+<p>なので、表示後に保存したり、別の画面で使用したい場合は、</p>
+
+<p>別のフォルダに一時ファイルを保存する必要があります。</p>
+
+<p>ただ後述していますが、コピーしたファイルなどはログアウト時に消さないと増え続けてしまうので注意です。</p>
+
+<h2>JSP側</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;img src="&lt;s:property value = "%{#session.uploadprofileimage.filepath}"/&gt;" width="193" height="130"/&gt;
+</span><span class='line'>
+</span><span class='line'>&lt;s:form action="doUpload" method="post" enctype="multipart/form-data"&gt;
+</span><span class='line'>   &lt;s:file name="upload" label="File"/&gt;
+</span><span class='line'>   &lt;s:submit value="画像アップロード"/&gt;
+</span><span class='line'>&lt;/s:form&gt;  </span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Struts.xml</h2>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>&lt;action name="doUpload" class="action.UploadAction"&gt; 
+</span><span class='line'>    &lt;result name="success"&gt;/profile.jsp&lt;/result&gt;
+</span><span class='line'>    &lt;result name="login"&gt;/login.jsp&lt;/result&gt;
+</span><span class='line'>&lt;/action&gt; </span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Action側</h2>
+
+<p>やりたいことはコンテキストパスの下にユーザ独自のフォルダを作成し</p>
+
+<p>一時ファイルをその下にコピーしています。</p>
+
+<p>ただ、ディレクトリを作ったりしているので、ここには記載していませんが</p>
+
+<p>ログアウトしたらディレクトリとファイルを消すという作業は要ります・・・。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>public class UploadAction{
+</span><span class='line'>    private File file; 
+</span><span class='line'>    private String contentType;
+</span><span class='line'>    private String filename;
+</span><span class='line'>
+</span><span class='line'>    public void setUpload(File file) {
+</span><span class='line'>        this.file = file;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public File getFile() {
+</span><span class='line'>        return file;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public void setUploadFileName(String filename) {
+</span><span class='line'>        this.filename = filename;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public String getFilename() {
+</span><span class='line'>        return filename;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public String getContentType() {
+</span><span class='line'>        return contentType;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public void setContentType(String contentType) {
+</span><span class='line'>        this.contentType = contentType;
+</span><span class='line'>    }
+</span><span class='line'>
+</span><span class='line'>    public String execute() throws Exception {
+</span><span class='line'>
+</span><span class='line'>//  セッションのユーザ情報取得      
+</span><span class='line'>        User user = getCurrentUser();
+</span><span class='line'>
+</span><span class='line'>        String realPath = ServletActionContext.getServletContext().getRealPath("/" + user.getId()); 
+</span><span class='line'>             
+</span><span class='line'>        File mdir = new File(realPath);
+</span><span class='line'>        mdir.mkdir();
+</span><span class='line'>                  
+</span><span class='line'>        try {
+</span><span class='line'>                        
+</span><span class='line'>            File filePath = new File(mdir,filename);            
+</span><span class='line'>            FileUtils.copyFile(file,filePath);
+</span><span class='line'>            //セッションにパスを格納
+</span><span class='line'>　　　　img.setFile(filePath);
+</span><span class='line'>           
+</span><span class='line'>            // エラーがあった場合は、スタックトレースを出力
+</span><span class='line'>        } catch (Exception e) {
+</span><span class='line'>            e.printStackTrace();
+</span><span class='line'>            
+</span><span class='line'>        }
+</span><span class='line'>        return "success";
+</span><span class='line'>    }
+</span><span class='line'>}</span></code></pre></td></tr></table></div></figure>
+
+
+<p>今回の手順は一時ファイルをコピーしたり、ログアウト時に消したりとするので結構めんどいです。</p>
+
+<p>最終日に別の方法(BASE64)も試すことができなので、別途紹介したいと思います。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JSPのformに複数アクションを設定したい場合の対処法]]></title>

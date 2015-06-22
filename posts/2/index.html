@@ -116,6 +116,87 @@
 
 
 
+<span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-25T21:20:05+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
+        
+      </p>
+    
+    
+      <h2 class="entry-title" itemprop="name headline"><a href="/blog/2015/01/25/learn-html-css/" itemprop="url">HTML/CSSの基本を勉強</a></h2>
+    
+  </header>
+
+
+  <div class="entry-content clearfix" itemprop="articleBody description"><p>今までのキャリアがパッケージソフトの開発がほとんどで実はHTMLとかあんまりわかっていなかったので
+基礎からちゃんとやろうということで、下記書籍を参考に勉強を始めてみました。</p>
+
+<p><strong>HTML&amp;CSS標準デザイン講座 【HTML5&amp;CSS3対応】</strong></p>
+
+<p><a href="http://www.amazon.co.jp/HTML-CSS%E6%A8%99%E6%BA%96%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E8%AC%9B%E5%BA%A7-%E3%80%90HTML5-CSS3%E5%AF%BE%E5%BF%9C%E3%80%91-%E3%81%82%E3%81%91%E3%81%BF/dp/4798129674">http://www.amazon.co.jp/HTML-CSS%E6%A8%99%E6%BA%96%E3%83%87%E3%82%B6%E3%82%A4%E3%83%B3%E8%AC%9B%E5%BA%A7-%E3%80%90HTML5-CSS3%E5%AF%BE%E5%BF%9C%E3%80%91-%E3%81%82%E3%81%91%E3%81%BF/dp/4798129674</a></p>
+
+<p>Lesson形式なので、自分にとってはわかりやすいですね。</p>
+
+<p>あんまり時間をかけるのもあれなんで、集中的に自分で動かして実施中。</p>
+
+<h3>vim操作</h3>
+
+<p>vimの操作に慣れるため、入力は基本的にコマンドライン上でやりますが、</p>
+
+<p>やっぱり慣れないと、使いづらい・・・。</p>
+
+<p>ということで、今回使用したvimの操作をメモ的に記載。</p>
+
+<ul>
+<li><p>shift + g  → 最終行に飛ぶ</p></li>
+<li><p>dd(連続押し) → １行切取り ※先頭に数字を入れるとその行数分切取り</p></li>
+<li><p>yy  →　カーソル行コピー　※先頭に数字を入れるとその行数分コピー</p></li>
+<li><p>p　→　カーソル行に貼付け　※先頭に数字を入れるとその行数分貼付け</p></li>
+</ul>
+
+
+<h2>ブログのタイトル変更</h2>
+
+<p>ついでなのでちょっとブログタイトルを変更するため
+_config.ymlのtitleを編集してdeploy。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake deploy</span></code></pre></td></tr></table></div></figure>
+
+
+<p>あれタイトルが変わらないので、なんでかなと思ったが
+再編しないといけないのかということで・・・ 。</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>rake generate</span></code></pre></td></tr></table></div></figure>
+
+
+<p>表示されました。
+設定をいじったときはちゃんと<strong>rake generate</strong>しないといけないのですね。</p>
+</div>
+  
+  
+
+
+        </article>
+      
+      
+        <article class="post" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+          
+  <header class="page-header">
+    
+      <p class="meta text-muted text-uppercase">
+        
+
+
+
+
+
+
+
+
+
+
+
+
 <span class="glyphicon glyphicon-calendar"></span> <time datetime="2015-01-20T23:11:26+09:00"  data-updated="true" itemprop="datePublished dateCreated">ordinal</time>
         
       </p>
@@ -751,6 +832,8 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
   
   <div id="recent_posts" class="list-group">
     
+    <a class="list-group-item " href="/blog/2015/06/22/java-training-2/">Struts2でファイルアップロード後に画像を表示する方法</a>
+    
     <a class="list-group-item " href="/blog/2015/06/08/java-training/">JSPのformに複数アクションを設定したい場合の対処法</a>
     
     <a class="list-group-item " href="/blog/2015/05/17/make-twitter-bot/">twitterのBotをPythonで作ってみる</a>
@@ -758,8 +841,6 @@ Ansibleもどう動いているかちゃんと理解したいので、ちょく�
     <a class="list-group-item " href="/blog/2015/05/09/participate-in-swy/">Start Up Weekend Yokohamaに参加してきました</a>
     
     <a class="list-group-item " href="/blog/2015/03/21/learn-oauth/">３月に参加したPython勉強会について</a>
-    
-    <a class="list-group-item " href="/blog/2015/03/15/learn-golang/">Golang勉強会に行ってきました</a>
     
   </div>
 </section>

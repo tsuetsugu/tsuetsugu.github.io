@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Struts2 | 30歳前半から始めるモダンなエンジニアへの転身の足跡]]></title>
   <link href="http://tsuetsugu.github.io/blog/categories/struts2/atom.xml" rel="self"/>
   <link href="http://tsuetsugu.github.io/"/>
-  <updated>2015-06-08T22:02:54+09:00</updated>
+  <updated>2015-06-22T22:48:30+09:00</updated>
   <id>http://tsuetsugu.github.io/</id>
   <author>
     <name><![CDATA[Toshi]]></name>
@@ -12,6 +12,119 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Struts2でファイルアップロード後に画像を表示する方法]]></title>
+    <link href="http://tsuetsugu.github.io/blog/2015/06/22/java-training-2/"/>
+    <updated>2015-06-22T22:41:36+09:00</updated>
+    <id>http://tsuetsugu.github.io/blog/2015/06/22/java-training-2</id>
+    <content type="html"><![CDATA[<p>研修ではまったこと第二弾として、画像アップロードについてのメモ書きです。</p>
+
+<p>自己紹介のページなどで自分の紹介画像をアップロードする場合、</p>
+
+<p>更新ボタンを押す前にどんな画像かを一回アップロードしてその画面で確認したいものです。</p>
+
+<p>その手順を探しても中々検索出来なかったので、自分のやった手順を紹介です。</p>
+
+<p>Struts2では画面とActionにgetter、setterを設定することで自動的にバインドされて一時ファイルも作成されるので</p>
+
+<p>楽チンですが、アクションが終わって画面で表示されるとアップロードの一時ファイルは消えてしまいます。</p>
+
+<p>なので、表示後に保存したり、別の画面で使用したい場合は、</p>
+
+<p>別のフォルダに一時ファイルを保存する必要があります。</p>
+
+<p>ただ後述していますが、コピーしたファイルなどはログアウト時に消さないと増え続けてしまうので注意です。</p>
+
+<h2>JSP側</h2>
+
+<pre><code>&lt;img src="&lt;s:property value = "%{#session.uploadprofileimage.filepath}"/&gt;" width="193" height="130"/&gt;
+
+&lt;s:form action="doUpload" method="post" enctype="multipart/form-data"&gt;
+   &lt;s:file name="upload" label="File"/&gt;
+   &lt;s:submit value="画像アップロード"/&gt;
+&lt;/s:form&gt;  
+</code></pre>
+
+<h2>Struts.xml</h2>
+
+<pre><code>    &lt;action name="doUpload" class="action.UploadAction"&gt; 
+        &lt;result name="success"&gt;/profile.jsp&lt;/result&gt;
+        &lt;result name="login"&gt;/login.jsp&lt;/result&gt;
+    &lt;/action&gt; 
+</code></pre>
+
+<h2>Action側</h2>
+
+<p>やりたいことはコンテキストパスの下にユーザ独自のフォルダを作成し</p>
+
+<p>一時ファイルをその下にコピーしています。</p>
+
+<p>ただ、ディレクトリを作ったりしているので、ここには記載していませんが</p>
+
+<p>ログアウトしたらディレクトリとファイルを消すという作業は要ります・・・。</p>
+
+<pre><code>public class UploadAction{
+    private File file; 
+    private String contentType;
+    private String filename;
+
+    public void setUpload(File file) {
+        this.file = file;
+    }
+
+    public File getFile() {
+        return file;
+    }
+
+    public void setUploadFileName(String filename) {
+        this.filename = filename;
+    }
+
+    public String getFilename() {
+        return filename;
+    }
+
+    public String getContentType() {
+        return contentType;
+    }
+
+    public void setContentType(String contentType) {
+        this.contentType = contentType;
+    }
+
+    public String execute() throws Exception {
+
+//  セッションのユーザ情報取得      
+        User user = getCurrentUser();
+
+        String realPath = ServletActionContext.getServletContext().getRealPath("/" + user.getId()); 
+
+        File mdir = new File(realPath);
+        mdir.mkdir();
+
+        try {
+
+            File filePath = new File(mdir,filename);            
+            FileUtils.copyFile(file,filePath);
+            //セッションにパスを格納
+　　　　img.setFile(filePath);
+
+            // エラーがあった場合は、スタックトレースを出力
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
+        return "success";
+    }
+}
+</code></pre>
+
+<p>今回の手順は一時ファイルをコピーしたり、ログアウト時に消したりとするので結構めんどいです。</p>
+
+<p>最終日に別の方法(BASE64)も試すことができなので、別途紹介したいと思います。</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[JSPのformに複数アクションを設定したい場合の対処法]]></title>
